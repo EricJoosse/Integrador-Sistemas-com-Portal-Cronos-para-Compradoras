@@ -18,3 +18,6 @@ Os seguintes sistemas jÃ¡ foram integrados com o Portal Cronos :
 * 3LM       
 * MVarandas
 
+Este projeto é independente do IDE (Eclipse, Netbeans, etc.), porém usa Maven. 
+Se preferir não usar Maven, veja as versões de cada dependência externa no arquivo pom.xml.
+ 
