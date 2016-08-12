@@ -1,3 +1,5 @@
+package pcronos.integracao.comprador;
+
 import java.util.Date;
 import java.util.Properties;
 import java.util.Locale;
