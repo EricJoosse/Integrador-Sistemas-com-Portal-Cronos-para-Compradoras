@@ -67,6 +67,7 @@
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
+          <encoding>Cp1252</encoding>  <!-- Para evitar erro de compilação para todos os acentos Portugueses : "unmappable character for encoding UTF-8" -->
         </configuration>
       </plugin>
         
