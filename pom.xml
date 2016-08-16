@@ -3,7 +3,7 @@
   <groupId>pcronos.integracao.comprador</groupId>
   <artifactId>integr-comprador</artifactId>
   <version>0.1-SNAPSHOT</version>
-  <name>Integrador de Sistemas com o Portal Cronos - para setores de compras</name>
+  <name>Integrador de Sistemas com o Portal Cronos - para setores de Compras</name>
   
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -60,6 +60,7 @@
 
     <plugins>
 
+      <!-- O Integrador de Sistemas com o Portal Cronos só compila com compatibilidade configurada para JDK 1.7 ou mais : -->
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.5.1</version>
