@@ -106,6 +106,9 @@
 		  <configuration>
 		    <archive>
 		    
+		      <!-- Não gerar META-INF/maven/${groupId}/${artifactId}/pom.xml e pom.properties : -->
+		      <addMavenDescriptor>false</addMavenDescriptor>
+		    
 		      <manifest>
 		        <packageName>pcronos.integracao.comprador</packageName>
 <!--                 <addDefaultImplementationEntries>true</addDefaultImplementationEntries> -->
