@@ -6,7 +6,7 @@
   <name>Integrador de Sistemas com o Portal Cronos - para setores de Compras</name>
   
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+<!--     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> -->
     <maven.build.timestamp.format>dd/MM/yyyy HH:mm</maven.build.timestamp.format>
   </properties>
   
