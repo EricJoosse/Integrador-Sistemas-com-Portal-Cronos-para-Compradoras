@@ -87,7 +87,8 @@
 		        <goal>copy-dependencies</goal>
 		      </goals>
 		      <configuration>
-		        <outputDirectory>${project.build.directory}/lib</outputDirectory>
+<!-- 	        <outputDirectory>${project.build.directory}/lib</outputDirectory> -->
+		        <outputDirectory>${project.basedir}/Instalador/Windows/Arquivos de Programas PC/Integração Comprador - Portal Cronos/lib</outputDirectory>
 		        <overWriteReleases>false</overWriteReleases>
 		        <overWriteSnapshots>false</overWriteSnapshots>
 		        <overWriteIfNewer>true</overWriteIfNewer>
@@ -104,6 +105,7 @@
             <version>2.4</version>   
                    <!--  A versão 3.0.2 gera rt.jar na posição errada  -->
 		  <configuration>
+            <outputDirectory>${project.basedir}/Instalador/Windows/Arquivos de Programas PC/Integração Comprador - Portal Cronos</outputDirectory>
 		    <archive>
 		    
 		      <!-- Não gerar META-INF/maven/${groupId}/${artifactId}/pom.xml e pom.properties : -->
