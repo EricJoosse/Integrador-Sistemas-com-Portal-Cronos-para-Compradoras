@@ -103,7 +103,7 @@
 		  <groupId>org.apache.maven.plugins</groupId>
 		  <artifactId>maven-jar-plugin</artifactId>
             <version>2.4</version>   
-                   <!--  A versão 3.0.2 gera rt.jar na posição errada  -->
+                   <!--  A versão 3.0.2 gera "rt.jar" e "." na posição errada  -->
 		  <configuration>
             <outputDirectory>${project.basedir}/Instalador/Windows/Arquivos de Programas PC/Integração Comprador - Portal Cronos</outputDirectory>
 		    <archive>
@@ -144,8 +144,9 @@
   		      <manifestEntries>
 		        <Built-By>${user.name} Joosse -  eric.jo@bol.com.br (Portal Cronos)</Built-By>
 		        <Build-Time>${maven.build.timestamp}</Build-Time>
-<!-- 3. O seguinte concatena rt.jar e . ANTES do Class-Path gerado automaticamente por Maven : -->
-   		        <Class-Path>file:///C:/Program%20Files/Java/jre1.8.0_92/lib/rt.jar .</Class-Path>
+<!-- 3. O seguinte concatena "rt.jar" e "." ANTES do Class-Path gerado automaticamente por Maven : -->
+         <!--<Class-Path>file:///C:/Program%20Files/Java/jre1.8.0_92/lib/rt.jar .</Class-Path> -->
+   		        <Class-Path>.</Class-Path>   <!-- rt.jar não precisa, pois rt.jar já está no bootclasspath do JVM -->
 		     </manifestEntries>
 
 		    </archive>
