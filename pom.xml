@@ -1,13 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>pcronos.integracao.comprador</groupId>
-  <artifactId>integr-comprador</artifactId>
-  <version>0.1-SNAPSHOT</version>
+  <artifactId>ponte-datasul-pcronos</artifactId>
+  <version>1.0.0</version>
   <name>Integrador de Sistemas com o Portal Cronos - para setores de Compras</name>
   
   <properties>
 <!--     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> -->
     <maven.build.timestamp.format>dd/MM/yyyy HH:mm</maven.build.timestamp.format>
+    <pcronos.jre.ambiente_producao>C:\Program Files\Java\jre1.8.0_92</pcronos.jre.ambiente_producao>
   </properties>
   
   <repositories>
@@ -65,9 +66,62 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.5.1</version>
         <configuration>
+          <encoding>Cp1252</encoding>   <!-- Para evitar erro de compilação para todos os acentos Portugueses : "unmappable character for encoding UTF-8" -->
           <source>1.8</source>
           <target>1.8</target>
-          <encoding>Cp1252</encoding>  <!-- Para evitar erro de compilação para todos os acentos Portugueses : "unmappable character for encoding UTF-8" -->
+          <fork>true</fork>
+
+<!--     O seguinte NÃO dá erro de opções inválidas de javac, porém não é o desejado : -->
+<!--           <compilerArguments> -->
+<!--             <verbose /> -->
+<!--              Em todos os dezenas de  servidores de produção tem o jre1.8.0_92 instalado, então melhor compilar exatamente com esta versão de rt.jar -->
+<!--             <bootclasspath>${java.home}\lib\rt.jar</bootclasspath> -->
+<!--             <extdirs>${java.home}\lib\ext</extdirs> -->
+<!--           </compilerArguments> -->
+
+<!--       O seguinte é o desejado , porém dá erro de opções inválidas de javac : -->
+<!--          <compilerArgument>"-verbose -bootclasspath ${java.home}\lib\rt.jar"</compilerArgument> -->
+<!--          <compilerArgument>-verbose -bootclasspath "${java.home}\lib\rt.jar"</compilerArgument> -->
+<!--          <compilerArgument>-verbose -bootclasspath ${java.home}\lib\rt.jar</compilerArgument> -->
+
+<!--             <bootclasspath>${java.home}..\jre1.8.0_92\lib\rt.jar</bootclasspath> -->
+<!--             <extdirs>${java.home}..\jre1.8.0_92\lib\ext</extdirs> -->
+
+<!--           O seguinte também dá erro de opções inválidas de javac : -->
+<!-- 			 <compilerArgs> -->
+<!-- 			<arg>-verbose</arg> -->
+<!-- 			<arg>-bootclasspath "C:\Program Files\Java\jre1.8.0_92\lib\rt.jar"</arg> -->
+<!-- 			<arg>-extdirs "C:\Program Files\Java\jre1.8.0_92\lib\ext"</arg> -->
+<!-- 			</compilerArgs> -->
+
+<!--           <compilerArguments> -->
+<!--             <verbose /> -->
+                       <!--  Em todos os dezenas de  servidores de produção tem o jre1.8.0_92 instalado, então melhor compilar exatamente com esta versão de rt.jar -->
+<!--             <bootclasspath>"C:\Program Files\Java\jre1.8.0_92\lib\rt.jar"</bootclasspath> -->
+<!--             <extdirs>"C:\Program Files\Java\jre1.8.0_92\lib\ext"</extdirs> -->
+<!--           </compilerArguments> -->
+
+<!--           <compilerArguments> -->
+<!--             <verbose /> -->
+<!--                         Em todos os dezenas de  servidores de produção tem o jre1.8.0_92 instalado, então melhor compilar exatamente com esta versão de rt.jar -->
+<!--             <bootclasspath>"C:/Program Files/Java/jre1.8.0_92/lib/rt.jar"</bootclasspath> -->
+<!--             <extdirs>"C:\Program Files\Java\jre1.8.0_92\lib\ext"</extdirs> -->
+<!--           </compilerArguments> -->
+
+<!--                  <compilerArgument>"-verbose -bootclasspath C:\Program Files\Java\jre1.8.0_92\lib\rt.jar -extdirs C:\Program Files\Java\jre1.8.0_92\lib\ext"</compilerArgument> -->
+<!--                  <compilerArgument>'-verbose -bootclasspath "C:\Program Files\Java\jre1.8.0_92\lib\rt.jar" -extdirs "C:\Program Files\Java\jre1.8.0_92\lib\ext"'</compilerArgument> -->
+<!--                  <compilerArgument>-verbose -bootclasspath C:\Program Files\Java\jre1.8.0_92\lib\rt.jar -extdirs C:\Program Files\Java\jre1.8.0_92\lib\ext</compilerArgument> -->
+<!--                  <compilerArgument>-verbose -bootclasspath "C:\Program Files\Java\jre1.8.0_92\lib\rt.jar" -extdirs "C:\Program Files\Java\jre1.8.0_92\lib\ext"</compilerArgument> -->
+<!--                  <compilerArgument>-verbose -bootclasspath "C:/Program Files/Java/jre1.8.0_92/lib/rt.jar" -extdirs "C:/Program Files/Java\jre1.8.0_92/lib/ext"</compilerArgument> -->
+
+<!-- Apenas o seguinte funciona, finalmente :  -->
+          <compilerArguments>
+            <verbose />
+<!--              Em todos os dezenas de  servidores de produção tem o jre1.8.0_92 instalado, então melhor compilar exatamente com esta versão de rt.jar -->
+            <bootclasspath>${pcronos.jre.ambiente_producao}\lib\rt.jar</bootclasspath>
+            <extdirs>${pcronos.jre.ambiente_producao}\lib\ext</extdirs>
+          </compilerArguments>
+
         </configuration>
       </plugin>
         
@@ -105,7 +159,7 @@
             <version>2.4</version>   
                    <!--  A versão 3.0.2 gera "rt.jar" e "." na posição errada  -->
 		  <configuration>
-            <outputDirectory>${project.basedir}/Instalador/Windows/Arquivos de Programas PC/Integração Comprador - Portal Cronos</outputDirectory>
+            <outputDirectory>${project.basedir}</outputDirectory>
 		    <archive>
 		    
 		      <!-- Não gerar META-INF/maven/${groupId}/${artifactId}/pom.xml e pom.properties : -->
@@ -135,7 +189,7 @@
 				        <Implementation-Title>pcronos.integracao.comprador.PonteWebServicesPortalCronos.class</Implementation-Title>
 				        <Implementation-Version>1.0.0</Implementation-Version>
 				        <Implementation-Vendor>eric.jo@bol.com.br</Implementation-Vendor>
-				        <Jar-Name>integr-comprador-0.1-SNAPSHOT.jar</Jar-Name>
+				        <Jar-Name>integr-datasul-pcronos.1.0.0.jar</Jar-Name>
 		            </manifestEntries>
 		          </manifestSection>
 

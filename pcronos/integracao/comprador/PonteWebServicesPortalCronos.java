@@ -3,6 +3,12 @@ package pcronos.integracao.comprador;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+
 import javax.ws.rs.core.MediaType;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
@@ -16,8 +22,10 @@ import com.sun.jersey.multipart.file.FileDataBodyPart;
 
 public final class PonteWebServicesPortalCronos 
 {
-  private static void upload_File(String url, File f, String formName, String username, String senha) throws FileNotFoundException 
-  {
+  private static final String DIR_TEMP = "C:/temp/PortalCronos/XML";
+
+  private static String upload_File(String url, File f, String formName, String username, String senha) throws FileNotFoundException 
+  { 
         final ClientConfig config = new DefaultClientConfig();
         final Client client = Client.create(config);
         client.addFilter(new HTTPBasicAuthFilter(username, senha));
@@ -34,15 +42,72 @@ public final class PonteWebServicesPortalCronos
         final ClientResponse clientResp = resource.type(
                 MediaType.MULTIPART_FORM_DATA_TYPE).post(ClientResponse.class,
                 multiPart);
-        System.out.println("Response: " + clientResp.getClientResponseStatus());
+        
+        String respostaXML = clientResp.getClientResponseStatus().toString();
+        System.out.println("respostaXML: " + respostaXML);
  
         client.destroy();
+        
+        return respostaXML;
   }
+
+  public static String uploadStringXML(String url, String stringXML, String usuario, String senha) throws IOException, FileNotFoundException
+  { 
+	  	File diretorioXML = new File(DIR_TEMP + "/");
+	  	if (!diretorioXML.exists()) { 
+	  		diretorioXML.mkdir();
+	  	}
+	  	
+	    purgeArquivosTemp();
+	    
+	    LocalDateTime horaEnv = LocalDateTime.now();
+		DateTimeFormatter Envformatter = DateTimeFormatter.ofPattern("yyyy.MM.dd_HH.mm.ss");
+		
+		String filenameRequisicao = DIR_TEMP + "/PostFile.";
+		filenameRequisicao += horaEnv.format(Envformatter) + ".xml";
+
+	    java.io.FileWriter fw = new java.io.FileWriter(filenameRequisicao);
+	    fw.write(stringXML);
+	    fw.close();
+	    
+	    String respostaXML = upload_File(url, new File(filenameRequisicao), "form1", usuario, senha) ;
+	            return respostaXML;
+	            
+  }
+
+
+  public static void purgeArquivosTemp()
+  {
+      LocalDateTime horaInicio = LocalDateTime.now();
+
+	  try
+	  {
+	       	   File dirTemp = new File(DIR_TEMP);
+	       	   
+	       	   if (!dirTemp.exists())
+	       		   throw new Exception("O diretório " + DIR_TEMP + " não existe!");
+	       	   
+	       	   for (final File file : dirTemp.listFiles()) 
+			   {
+				   LocalDateTime datahoraArquivo = LocalDateTime.ofInstant(Instant.ofEpochMilli(file.lastModified()), ZoneId.systemDefault()); 
+				   
+				   if (datahoraArquivo.isBefore(horaInicio.minusDays(7))) 
+				   {
+				      file.delete();
+				   }
+			   }
+	  }
+	  catch (Exception ex)
+	  {
+		  System.out.println("purgeArquivosTemp(): Erro: " + ex.getMessage());
+	  }
+   }
+
 
   public static void main(String[] args) throws IOException
   {    
     String enderecoBaseWebService = "http://52.10.223.6/v2/api/";
-    String username = "ws-compesa";
+    String username = "ws-cronos";
     String senha = "123456";
     String diretorioArquivosXml = "C:/temp/PortalCronos/XML/";
     String filenameRequisicao = diretorioArquivosXml + "requisicao_85263_201604281133.xml";
