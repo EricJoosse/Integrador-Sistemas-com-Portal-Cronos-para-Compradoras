@@ -1,0 +1,21 @@
+carlos.etsouza@gmail.com
+
+Carlos Eduardo, boa tarde!
+ 
+  a "ponte" Java está disponível. Já testei esta ponte agorinha e funcionou. para evitar bloqueio de anexos de arquivos .jar por providores de email,
+a ponte está disponível para download no link http://52.170.47.238/ponte-integracao-pcronos-1.0.0.jar
+ 
+É só chamar o método "uploadStringXML" na classe "PonteWebServicesPortalCronos"  na package "pcronos.integracao.comprador".
+Parâmetros: String url, String stringXML, String usuario, String senha.
+Este método retorna um string XML com a lista de eventuais erros que pode estar vazio, apenas repassando o retorno do web service, veja o manual de Integração.
+ 
+Observação: na versão atual da ponte não chame o método "main".
+ 
+Espero que vocês já têm uma infra-estrutura pronta, dentro ou fora do Datasul, para executar qualquer método java em qualquer arquivo .jar diferente de métodos "main". 
+Caso contrário, vocês vão ter que criar esta infraestrutura> Se precisar poss ajudar com isso, talvez até conectado via AnyDesk. 
+ 
+Então minha dúvida é se vocês já têm uma infraestrutura?
+ 
+Atc,
+Eric
+ 

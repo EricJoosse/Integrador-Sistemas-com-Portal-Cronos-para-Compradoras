@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>pcronos.integracao.comprador</groupId>
-  <artifactId>ponte-datasul-pcronos</artifactId>
-  <version>1.0.0</version>
+  <artifactId>ponte-integracao-pcronos</artifactId>
+  <version>1.0.1</version>
   <name>Integrador de Sistemas com o Portal Cronos - para setores de Compras</name>
   
   <properties>
@@ -179,7 +179,7 @@
 		            <manifestEntries>
 				        <Specification-Title>Integrador Comprador - Portal Cronos</Specification-Title>
 				        <Specification-Vendor>Cronos Technology, PE, Brasil</Specification-Vendor>
-				        <Specification-Version>1.0.0</Specification-Version>
+				        <Specification-Version>1.0.1</Specification-Version>
 		            </manifestEntries>
 		          </manifestSection>
 
@@ -187,9 +187,9 @@
 		            <name>Implementation</name>
 		            <manifestEntries>
 				        <Implementation-Title>pcronos.integracao.comprador.PonteWebServicesPortalCronos.class</Implementation-Title>
-				        <Implementation-Version>1.0.0</Implementation-Version>
+				        <Implementation-Version>1.0.1</Implementation-Version>
 				        <Implementation-Vendor>eric.jo@bol.com.br</Implementation-Vendor>
-				        <Jar-Name>integr-datasul-pcronos.1.0.0.jar</Jar-Name>
+				        <Jar-Name>ponte-integracao-pcronos.1.0.1.jar</Jar-Name>
 		            </manifestEntries>
 		          </manifestSection>
 
