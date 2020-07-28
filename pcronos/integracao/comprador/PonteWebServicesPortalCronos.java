@@ -3,6 +3,9 @@ package pcronos.integracao.comprador;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -18,6 +21,7 @@ import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 import com.sun.jersey.multipart.FormDataMultiPart;
 import com.sun.jersey.multipart.file.FileDataBodyPart;
+
 
 
 public final class PonteWebServicesPortalCronos 
@@ -104,18 +108,42 @@ public final class PonteWebServicesPortalCronos
    }
 
 
-  public static void main(String[] args) throws IOException
+  public static void main(String[] args) throws IOException, Exception 
   {    
-    String enderecoBaseWebService = "http://www.portalcronos.com.br:81/v2/api/";
-    String username = "ws-guaraves_matriz";
-    String senha = "123456";
-    String strXML = "<?xml version=\"1.0\" encoding=\"ISO - 8859 - 1\"?> <Requisicao>                                                                <Tp_Movimento>I</Tp_Movimento>                          <Dt_Gravacao>30/06/2020 21:16:08</Dt_Gravacao>                           <Cd_Comprador>12727145000178</Cd_Comprador>                          <Cd_Requisicao>333333</Cd_Requisicao>                         <Cd_Setor>12</Cd_Setor>                                                  <Dt_Requisicao>30/06/2020</Dt_Requisicao>                      <Cd_Usuario_Solicitante>ferreira      </Cd_Usuario_Solicitante>      <Ds_Observacao>                              </Ds_Observacao>                          <Produtos>        <Produto>                                                                   <Cd_Produto>15010628       </Cd_Produto>                         <Ds_Produto>CABO DE REDE BLUECOM                    </Ds_Produto>                         <Ds_Unidade_Compra>METRO                                   </Ds_Unidade_Compra>           <Cd_Marca></Cd_Marca>                                                        <Qtd_Solicitada>    0,500</Qtd_Solicitada>                                    <Ds_Observacao_Produto>                              </Ds_Observacao_Produto>         </Produto>      </Produtos> </Requisicao>";
-    String diretorioArquivosXml = "C:/temp/PortalCronos/XML/";
-    String filenameRequisicao = diretorioArquivosXml + "requisicao_85263_201604281133.xml";
+//    String enderecoBaseWebService = "http://www.portalcronos.com.br:81/v2/api/";
+//    String username = "ws-guaraves_matriz";
+//    String senha = "123456";
+//    String strXML = "<?xml version=\"1.0\" encoding=\"ISO - 8859 - 1\"?> <Requisicao>                                                                <Tp_Movimento>I</Tp_Movimento>                          <Dt_Gravacao>30/06/2020 21:16:08</Dt_Gravacao>                           <Cd_Comprador>12727145000178</Cd_Comprador>                          <Cd_Requisicao>333333</Cd_Requisicao>                         <Cd_Setor>12</Cd_Setor>                                                  <Dt_Requisicao>30/06/2020</Dt_Requisicao>                      <Cd_Usuario_Solicitante>ferreira      </Cd_Usuario_Solicitante>      <Ds_Observacao>                              </Ds_Observacao>                          <Produtos>        <Produto>                                                                   <Cd_Produto>15010628       </Cd_Produto>                         <Ds_Produto>CABO DE REDE BLUECOM                    </Ds_Produto>                         <Ds_Unidade_Compra>METRO                                   </Ds_Unidade_Compra>           <Cd_Marca></Cd_Marca>                                                        <Qtd_Solicitada>    0,500</Qtd_Solicitada>                                    <Ds_Observacao_Produto>                              </Ds_Observacao_Produto>         </Produto>      </Produtos> </Requisicao>";
+//    String diretorioArquivosXml = "C:/temp/PortalCronos/XML/";
+//    String filenameRequisicao = diretorioArquivosXml + "requisicao_85263_201604281133.xml";
+//    
+//    String retorno = uploadStringXML(enderecoBaseWebService + "Requisicao/PostFileRequisicao", strXML, username, senha);
+//    System.out.println(retorno);
+//    
+
+	  if (args.length != 6)
+		  throw new Exception("Erro! Não foram passados 6 parâmetros!");
+	  
+	  String url = args[0];
+	  String usuario = args[1];
+	  String senha = args[2];
+	  String dirMaisNomeArqUploadXML = args[3];
+	  String dirMaisNomeArqRetornoXML = args[4];
+	  String dirMaisNomeArqRetornoStatusCodeHTTP = args[5];
     
-    String retorno = uploadStringXML(enderecoBaseWebService + "Requisicao/PostFileRequisicao", strXML, username, senha);
-    System.out.println(retorno);
+   	  String strXML = new String(Files.readAllBytes(Paths.get(dirMaisNomeArqUploadXML)), Charset.forName("ISO-8859-1"));
+	  
+	  String strRetornoStatusCodeHTTP = uploadStringXML(url, strXML, usuario, senha);
+
+      java.io.FileWriter fwXML = new java.io.FileWriter(dirMaisNomeArqRetornoXML);
+      fwXML.write(strRetornoStatusCodeHTTP);
+      fwXML.close();
     
- // upload_File(enderecoBaseWebService + "Requisicao/PostFileRequisicao", new File(filenameRequisicao), "form1", username, senha) ;
+      java.io.FileWriter fwHTTP = new java.io.FileWriter(dirMaisNomeArqRetornoStatusCodeHTTP);
+      fwHTTP.write(strRetornoStatusCodeHTTP);
+      fwHTTP.close();
+    
+	  
+	  // upload_File(enderecoBaseWebService + "Requisicao/PostFileRequisicao", new File(filenameRequisicao), "form1", username, senha) ;
   }
 }
