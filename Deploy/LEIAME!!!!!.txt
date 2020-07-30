@@ -1,0 +1,2 @@
+1. Compactar o conteúdo do diretório /Deploy/ exceto este LEAIMA!!!!.txt
+2. Colocar o aquivo zippado no raiz do site 52.170.47.238, porta 80
