@@ -1,2 +1,21 @@
 1. Compactar o conteúdo do diretório /Deploy/ exceto este LEAIMA!!!!.txt
+   para o arquivo "PonteJavaIntegraçãoPCronos.2.1.0.zip" sem espaços no nome do arquivo.
+    
 2. Colocar o aquivo zippado no raiz do site 52.170.47.238, porta 80
+ 
+3. Email: 
+
+Carlos,
+  
+    coloquei uma versão nova 2.1.0 da ponte java no link http://52.170.47.238/PonteJavaIntegraçãoPCronos.2.1.0.zip, 
+feita com a mesma versão antiga 1.7 de Java que o JBoss da TOTVS usa. 
+ 
+Esta versão da ponte vem com mais diversos outros arquivos .jar. 
+Favor descompactar estes arquivos .jar mantendo a mesma estrutura de subdiretórios que têm dentro do arquivo zippado. 
+ 
+Agora a grande dúvida vai ser se a ponte java vai funcionar com esta versão bem antiga de Java. 
+Caso contrário, teremos que instalar a versão mais nova Java 1.8.92 no servidor da JC em paralelo com a versão antiga 1.7, 
+sem quebrar o JBoss, e sem interferência, 
+ 
+Eric
+ 

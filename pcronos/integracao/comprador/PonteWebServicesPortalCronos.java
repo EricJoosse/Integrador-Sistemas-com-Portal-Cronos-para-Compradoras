@@ -28,7 +28,7 @@ public final class PonteWebServicesPortalCronos
 {
   private static final String DIR_TEMP = "C:/ProgramData/PortalCronos/XML";
 
-  private static String upload_File(String url, File f, String formName, String username, String senha) throws FileNotFoundException 
+  private static RetornoWebServiceDTO upload_File(String url, File f, String formName, String username, String senha) throws FileNotFoundException 
   { 
         final ClientConfig config = new DefaultClientConfig();
         final Client client = Client.create(config);
@@ -47,15 +47,21 @@ public final class PonteWebServicesPortalCronos
                 MediaType.MULTIPART_FORM_DATA_TYPE).post(ClientResponse.class,
                 multiPart);
         
-        String respostaXML = clientResp.getClientResponseStatus().toString();
-        System.out.println("respostaXML: " + respostaXML);
+        String respostaStatusCodeHTTP = Integer.toString(clientResp.getClientResponseStatus().getStatusCode());
+        System.out.println("upload_File(): respostaStatusCodeHTTP: " + respostaStatusCodeHTTP);
+        System.out.println("upload_File(): HTTP Status Code = " + respostaStatusCodeHTTP + " (" + clientResp.getClientResponseStatus().getReasonPhrase() + ")");
  
-        client.destroy();
+        // Neste caso JAXB seria mais trabalhoso do que SAX e DOM,
+    	// então não usar um Entity :
+        String respostaXML = clientResp.getEntity(String.class);
+        System.out.println("upload_File(): respostaXML = " + respostaXML) ;
         
-        return respostaXML;
+        client.destroy();
+         
+        return new RetornoWebServiceDTO(respostaStatusCodeHTTP, respostaXML);
   }
 
-  public static String uploadStringXML(String url, String stringXML, String usuario, String senha) throws IOException, FileNotFoundException
+  public static RetornoWebServiceDTO uploadStringXML(String url, String stringXML, String usuario, String senha) throws IOException, FileNotFoundException
   { 
 	  	File diretorioXML = new File(DIR_TEMP + "/");
 	  	if (!diretorioXML.exists()) { 
@@ -68,14 +74,18 @@ public final class PonteWebServicesPortalCronos
 		DateTimeFormatter Envformatter = DateTimeFormatter.ofPattern("yyyy.MM.dd_HH.mm.ss");
 		
 		String filenameRequisicao = DIR_TEMP + "/PostFile.";
+		filenameRequisicao += usuario + ".";
 		filenameRequisicao += horaEnv.format(Envformatter) + ".xml";
 
 	    java.io.FileWriter fw = new java.io.FileWriter(filenameRequisicao);
 	    fw.write(stringXML);
 	    fw.close();
 	    
-	    String respostaXML = upload_File(url, new File(filenameRequisicao), "form1", usuario, senha) ;
-	            return respostaXML;
+	    RetornoWebServiceDTO retornoWebServiceDTO = upload_File(url, new File(filenameRequisicao), "form1", usuario, senha) ;
+	 // String respostaStatusCodeHTTP = retornoWebServiceDTO.StatusCodeHTTP;
+	 // String respostaXML =  retornoWebServiceDTO.MensagensXML;
+	    
+	    return retornoWebServiceDTO;
 	            
   }
 
@@ -117,8 +127,9 @@ public final class PonteWebServicesPortalCronos
 //    String diretorioArquivosXml = "C:/temp/PortalCronos/XML/";
 //    String filenameRequisicao = diretorioArquivosXml + "requisicao_85263_201604281133.xml";
 //    
-//    String retorno = uploadStringXML(enderecoBaseWebService + "Requisicao/PostFileRequisicao", strXML, username, senha);
-//    System.out.println(retorno);
+//    RetornoWebServiceDTO retornoWebServiceDTO = uploadStringXML(enderecoBaseWebService + "Requisicao/PostFileRequisicao", strXML, username, senha);
+//    System.out.println(retornoWebServiceDTO.StatusCodeHTTP);
+//    System.out.println(retornoWebServiceDTO.MensagensXML);
 //    
 
 	  if (args.length != 6)
@@ -133,14 +144,14 @@ public final class PonteWebServicesPortalCronos
     
    	  String strXML = new String(Files.readAllBytes(Paths.get(dirMaisNomeArqUploadXML)), Charset.forName("ISO-8859-1"));
 	  
-	  String strRetornoStatusCodeHTTP = uploadStringXML(url, strXML, usuario, senha);
+   	  RetornoWebServiceDTO retornoWebServiceDTO = uploadStringXML(url, strXML, usuario, senha); 
 
       java.io.FileWriter fwXML = new java.io.FileWriter(dirMaisNomeArqRetornoXML);
-      fwXML.write(strRetornoStatusCodeHTTP);
+      fwXML.write(retornoWebServiceDTO.MensagensXML);
       fwXML.close();
     
       java.io.FileWriter fwHTTP = new java.io.FileWriter(dirMaisNomeArqRetornoStatusCodeHTTP);
-      fwHTTP.write(strRetornoStatusCodeHTTP);
+      fwHTTP.write(retornoWebServiceDTO.StatusCodeHTTP);
       fwHTTP.close();
     
 	  

@@ -7,7 +7,10 @@ a ponte está disponível para download no link http://52.170.47.238/ponte-integra
  
 É só chamar o método "uploadStringXML" na classe "PonteWebServicesPortalCronos"  na package "pcronos.integracao.comprador".
 Parâmetros: String url, String stringXML, String usuario, String senha.
-Este método retorna um string XML com a lista de eventuais erros que pode estar vazio, apenas repassando o retorno do web service, veja o manual de Integração.
+Este método retorna um objeto de tipo pcronos.integracao.comprador.RetornoWebServiceDTO com os seguintes campos:
+  - String StatusCodeHTTP: pode ser 200, 202, ....., veja o manual de Integração
+  - String MensagensXML: string XML com a lista de eventuais erros que pode estar vazio, 
+apenas repassando o retorno do web service, veja o manual de Integração.
  
 Observação: na versão atual da ponte não chame o método "main".
  
