@@ -1,0 +1,17 @@
+Jornal do Comercio:
+
+- Dd_comprador: 664
+- Sistema: Datasul
+- Versão ponte java: 2.0.0
+- Em produção: Não
+- Sistema operacional: WINDOWS SERVER 2012 R2 DataCenter
+- Tipo sistema operacional: 64 bits
+- Email: carlos.etsouza@gmail.com
+- Skype: não informado
+- Telefone: 081 - 9 9972 5509
+- Prenome: Carlos Eduardo
+- Versão java: 1.7.0_80 (usado por JBoss da TOTVS)
+- Tipo Java: 64 bit
+- Anydesk 767 826 830
+- Usário web service: ws-sjcc 
+- Senha web service: 123456
