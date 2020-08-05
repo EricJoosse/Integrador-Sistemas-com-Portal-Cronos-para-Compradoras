@@ -1,5 +1,9 @@
 carlos.etsouza@gmail.com
 
+
+A. Uso da ponte sem MS-DOS:
+===========================
+
 Carlos Eduardo, boa tarde!
  
   a "ponte" Java está disponível. Já testei esta ponte agorinha e funcionou. para evitar bloqueio de anexos de arquivos .jar por providores de email,
@@ -21,4 +25,24 @@ Então minha dúvida é se vocês já têm uma infraestrutura?
  
 Atc,
 Eric
+ 
+ 
+A. Uso da ponte svis MS-DOS:
+============================
+
+cd\
+cd dir1
+cd dir2
+.......
+"%JAVA_HOME%\bin\java.exe"   -cp  ponte-integracao-pcronos-2.1.0.jar  pcronos.integracao.comprador.PonteWebServicesPortalCronos  "url"   usuario  senha  "dirMaisNomeArqUploadXML"   "dirMaisNomeArqRetornoXML"   "dirMaisNomeArqRetornoStatusCodeHTTP"
+ 
+Observações:
+1. Os últimos 3 parâmetros devem ser passados com aspas duplas, veja o exemplo acima;
+ 
+2. Dentro dos últimos 3 parâmetros eventuais caracteres \ dos diretórios e eventuais caracteres " devem ser precedidos pelo "escape character" \ .
+    Eventuais caracteres / não precisam disso.
+ 
+3. A ponte Java é independente do web service do Portal Cronos e pode ser usado
+    para upload de qualquer arquivo XML para qualquer web service do Portal Cronos
+    como por exemplo "PostFileRequisicao", "PostFileRecebimentoOrdemCompra", "PostFileSituacaoOrdemCompra", etc.
  
