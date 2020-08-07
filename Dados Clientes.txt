@@ -1,10 +1,11 @@
 Jornal do Comercio:
 
-- Dd_comprador: 664
+- Id_comprador: 664
 - Sistema: Datasul
-- Versão ponte java: 2.0.0
+- Versão ponte java: 2.1.0
 - Em produção: Não
 - Sistema operacional: WINDOWS SERVER 2012 R2 DataCenter
+- Idioma do Sistema operacional: Inglês
 - Tipo sistema operacional: 64 bits
 - Email: carlos.etsouza@gmail.com
 - Skype: não informado
