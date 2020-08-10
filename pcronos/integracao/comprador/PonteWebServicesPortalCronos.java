@@ -27,6 +27,7 @@ import com.sun.jersey.multipart.file.FileDataBodyPart;
 public final class PonteWebServicesPortalCronos 
 {
   private static final String DIR_TEMP = "C:/ProgramData/PortalCronos/XML";
+  public static final String DIR_ARQS_PONTE_MSDOS = "C:/ProgramData/PortalCronos/";
 
   private static RetornoWebServiceDTO upload_File(String url, File f, String formName, String username, String senha) throws FileNotFoundException 
   { 
@@ -138,11 +139,28 @@ public final class PonteWebServicesPortalCronos
 	  String url = args[0];
 	  String usuario = args[1];
 	  String senha = args[2];
-	  String dirMaisNomeArqUploadXML = args[3];
-	  String dirMaisNomeArqRetornoXML = args[4];
-	  String dirMaisNomeArqRetornoStatusCodeHTTP = args[5];
+	  
+	  // Antigo - com diretórios flexíveis:
+   // String dirMaisNomeArqUploadXML = args[3];
+   // String dirMaisNomeArqRetornoXML = args[4];
+   // String dirMaisNomeArqRetornoStatusCodeHTTP = args[5];
     
-   	  String strXML = new String(Files.readAllBytes(Paths.get(dirMaisNomeArqUploadXML)), Charset.forName("ISO-8859-1"));
+	  // Versão atual - com um único diretório fixo:
+	  String ArqUploadXML = args[3];
+	  String ArqRetornoXML = args[4];
+	  String ArqRetornoStatusCodeHTTP = args[5];
+	  
+	  String dirMaisNomeArqUploadXML = DIR_ARQS_PONTE_MSDOS + ArqUploadXML;
+	  String dirMaisNomeArqRetornoXML = DIR_ARQS_PONTE_MSDOS + ArqRetornoXML;
+	  String dirMaisNomeArqRetornoStatusCodeHTTP = DIR_ARQS_PONTE_MSDOS + ArqRetornoStatusCodeHTTP;
+
+	  File diretorioPonteMSDOS = new File(DIR_ARQS_PONTE_MSDOS);
+	  if (!diretorioPonteMSDOS.exists()) { 
+	   	 diretorioPonteMSDOS.mkdirs();
+	  }
+	  // FIM versão atual - com um único diretório fixo
+
+	  String strXML = new String(Files.readAllBytes(Paths.get(dirMaisNomeArqUploadXML)), Charset.forName("ISO-8859-1"));
 	  
    	  RetornoWebServiceDTO retornoWebServiceDTO = uploadStringXML(url, strXML, usuario, senha); 
 

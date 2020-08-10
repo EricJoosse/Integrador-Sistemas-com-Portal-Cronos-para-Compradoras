@@ -34,7 +34,11 @@ cd\
 cd dir1
 cd dir2
 .......
-"%JAVA_HOME%\bin\java.exe"   -cp  ponte-integracao-pcronos-2.1.0.jar  pcronos.integracao.comprador.PonteWebServicesPortalCronos  "url"   usuario  senha  "dirMaisNomeArqUploadXML"   "dirMaisNomeArqRetornoXML"   "dirMaisNomeArqRetornoStatusCodeHTTP"
+REM Antigo - com diretórios flexíveis:
+REM "%JAVA_HOME%\bin\java.exe"   -cp  ponte-integracao-pcronos-2.1.0.jar  pcronos.integracao.comprador.PonteWebServicesPortalCronos  "url"   usuario  senha  "dirMaisNomeArqUploadXML"   "dirMaisNomeArqRetornoXML"   "dirMaisNomeArqRetornoStatusCodeHTTP"
+ 
+REM Versão atual - com único diretório fixo:
+"%JAVA_HOME%\bin\java.exe"   -cp  ponte-integracao-pcronos-2.1.0.jar  pcronos.integracao.comprador.PonteWebServicesPortalCronos  "url"   usuario  senha  "NomeArqUploadXML"   "NomeArqRetornoXML"   "ArqRetornoStatusCodeHTTP"
  
 Observações:
 1. Os últimos 3 parâmetros devem ser passados com aspas duplas, veja o exemplo acima;
@@ -46,3 +50,7 @@ Observações:
     para upload de qualquer arquivo XML para qualquer web service do Portal Cronos
     como por exemplo "PostFileRequisicao", "PostFileRecebimentoOrdemCompra", "PostFileSituacaoOrdemCompra", etc.
  
+4. Na vesão atual da ponte o diretório para os 3 tipos de arquivos é um diretório único e um diretório fixo no programa. 
+   O diretório fixo é C:/ProgramData/PortalCronos/ e não é C:/temp/ para evitar prejuizos graves e até paradas impeditivas 
+   da integração no futuro.
+   

@@ -19,3 +19,24 @@ sem quebrar o JBoss, e sem interferência,
  
 Eric
  
+
+ 
+ OU:
+ 
+ 
+Carlos,
+  
+    coloquei uma versão nova da ponte java no link http://52.170.47.238/PonteJavaIntegraçãoPCronos.2.1.0.zip, 
+que foi alterada para ficar usando o diretório C:/ProgramData/PortalCronos/ fixo na ponte java. 
+ 
+Favor descompactar este arquivo .zip mantendo a mesma estrutura de subdiretórios que têm dentro deste arquivo zippado.
+Isso quer dizer: copiar o arquivo zippado da ponte nova para o diretório onde a ponte antiga já estava
+(D:\totvs\projetos-datasul11\ccp001\Includes\), e apagar a ponte antiga lá e descompactar o novo arquivo zip lá. 
+ 
+Favor confirmar esta atualização no seu servidor. 
+Em seguida vou enviar um manualzinho como instalar a versão 1.8 de java ao lado da sua versão antiga 1.7, sem prejudicar o JBoss,
+ 
+Atc,  
+Eric
+ 
+ 
