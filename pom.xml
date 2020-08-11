@@ -8,6 +8,8 @@
   <properties>
 <!--     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> -->
     <maven.build.timestamp.format>dd/MM/yyyy HH:mm</maven.build.timestamp.format>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
     <pcronos.jre.ambiente_producao>C:\Program Files\Java\jre1.8.0_92</pcronos.jre.ambiente_producao>
   </properties>
   
