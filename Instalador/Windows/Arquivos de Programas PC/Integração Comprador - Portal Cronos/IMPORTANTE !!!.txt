@@ -1,0 +1,2 @@
+Ao alterar o arquivo .bat do job, editar com o editor de DOS 
+e não com o Notepad para evitar problemas com cedilhas e acentos !
