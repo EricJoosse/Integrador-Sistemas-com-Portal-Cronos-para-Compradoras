@@ -8,7 +8,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.time.LocalDateTime;
+//import java.time.LocalDateTime;
+import java.util.Date;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
@@ -71,12 +72,15 @@ public final class PonteWebServicesPortalCronos
 	  	
 	    purgeArquivosTemp();
 	    
-	    LocalDateTime horaEnv = LocalDateTime.now();
-		DateTimeFormatter Envformatter = DateTimeFormatter.ofPattern("yyyy.MM.dd_HH.mm.ss");
-		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd_HH.mm.ss");
+		Date horaEnv = new Date(System.currentTimeMillis());
+	 // LocalDateTime horaEnv = LocalDateTime.now();
+	 // DateTimeFormatter Envformatter = DateTimeFormatter.ofPattern("yyyy.MM.dd_HH.mm.ss");
+
 		String filenameRequisicao = DIR_TEMP + "/PostFile.";
 		filenameRequisicao += usuario + ".";
-		filenameRequisicao += horaEnv.format(Envformatter) + ".xml";
+	 // filenameRequisicao += horaEnv.format(Envformatter) + ".xml";
+		filenameRequisicao += formatter.format(horaEnv) + ".xml";
 
 	    java.io.FileWriter fw = new java.io.FileWriter(filenameRequisicao);
 	    fw.write(stringXML);
@@ -93,7 +97,9 @@ public final class PonteWebServicesPortalCronos
 
   private static void purgeArquivosTemp()
   {
-      LocalDateTime horaInicio = LocalDateTime.now();
+   // LocalDateTime horaInicio = LocalDateTime.now();
+ 	  SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd_HH.mm.ss");
+	  Date horaInicio = new Date(System.currentTimeMillis());
 
 	  try
 	  {
@@ -104,12 +110,12 @@ public final class PonteWebServicesPortalCronos
 	       	   
 	       	   for (final File file : dirTemp.listFiles()) 
 			   {
-				   LocalDateTime datahoraArquivo = LocalDateTime.ofInstant(Instant.ofEpochMilli(file.lastModified()), ZoneId.systemDefault()); 
-				   
-				   if (datahoraArquivo.isBefore(horaInicio.minusDays(7))) 
-				   {
-				      file.delete();
-				   }
+//				   Date datahoraArquivo = Date.ofInstant(Instant.ofEpochMilli(file.lastModified()), ZoneId.systemDefault()); 
+//				   
+//				   if (datahoraArquivo.isBefore(horaInicio.minusDays(7))) 
+//				   {
+//				      file.delete();
+//				   }
 			   }
 	  }
 	  catch (Exception ex)
@@ -158,7 +164,7 @@ public final class PonteWebServicesPortalCronos
 	  if (!diretorioPonteMSDOS.exists()) { 
 	   	 diretorioPonteMSDOS.mkdirs();
 	  }
-	  // FIM versão atual - com um único diretório fixo
+	  // FIM versão atual - com um único diretório fixo  
 
 	  String strXML = new String(Files.readAllBytes(Paths.get(dirMaisNomeArqUploadXML)), Charset.forName("ISO-8859-1"));
 	  

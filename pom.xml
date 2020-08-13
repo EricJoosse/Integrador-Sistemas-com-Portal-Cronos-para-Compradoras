@@ -70,7 +70,7 @@
         <configuration>
           <encoding>Cp1252</encoding>   <!-- Para evitar erro de compilação para todos os acentos Portugueses : "unmappable character for encoding UTF-8" -->
           <source>1.7</source>
-          <target>1.8</target>
+          <target>1.7</target>
           <fork>true</fork>
 
 <!--     O seguinte NÃO dá erro de opções inválidas de javac, porém não é o desejado : -->
