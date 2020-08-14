@@ -2,14 +2,14 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>pcronos.integracao.comprador</groupId>
   <artifactId>ponte-integracao-pcronos</artifactId>
-  <version>2.1.0</version>
+  <version>2.1.1</version>
   <name>Integrador de Sistemas com o Portal Cronos - para setores de Compras</name>
   
   <properties>
 <!--     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> -->
     <maven.build.timestamp.format>dd/MM/yyyy HH:mm</maven.build.timestamp.format>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>1.7</maven.compiler.source>  <!-- Talvez não precisa disso neste nível e a mesma coisa no nível do maven-compiler-plugin já é suficiente. -->
+    <maven.compiler.target>1.7</maven.compiler.target>  <!-- Talvez não precisa disso neste nível e a mesma coisa no nível do maven-compiler-plugin já é suficiente. -->
     <pcronos.jre.ambiente_producao>C:\Program Files\Java\jre1.8.0_92</pcronos.jre.ambiente_producao>
   </properties>
   
@@ -181,7 +181,7 @@
 		            <manifestEntries>
 				        <Specification-Title>Integrador Comprador - Portal Cronos</Specification-Title>
 				        <Specification-Vendor>Cronos Technology, PE, Brasil</Specification-Vendor>
-				        <Specification-Version>2.1.0</Specification-Version>
+				        <Specification-Version>2.1.1</Specification-Version>
 		            </manifestEntries>
 		          </manifestSection>
 
@@ -189,9 +189,9 @@
 		            <name>Implementation</name>
 		            <manifestEntries>
 				        <Implementation-Title>pcronos.integracao.comprador.PonteWebServicesPortalCronos.class</Implementation-Title>
-				        <Implementation-Version>2.1.0</Implementation-Version>
+				        <Implementation-Version>2.1.1</Implementation-Version>
 				        <Implementation-Vendor>eric.jo@bol.com.br</Implementation-Vendor>
-				        <Jar-Name>ponte-integracao-pcronos.2.1.0.jar</Jar-Name>
+				        <Jar-Name>ponte-integracao-pcronos.2.1.1.jar</Jar-Name>
 		            </manifestEntries>
 		          </manifestSection>
 

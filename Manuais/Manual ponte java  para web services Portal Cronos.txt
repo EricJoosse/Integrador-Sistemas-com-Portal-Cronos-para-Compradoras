@@ -27,8 +27,8 @@ Atc,
 Eric
  
  
-A. Uso da ponte svis MS-DOS:
-============================
+A. Uso da ponte com MS-DOS:
+===========================
 
 cd\
 cd dir1
@@ -37,20 +37,22 @@ cd dir2
 REM Antigo - com diretórios flexíveis:
 REM "%JAVA_HOME%\bin\java.exe"   -cp  ponte-integracao-pcronos-2.1.0.jar  pcronos.integracao.comprador.PonteWebServicesPortalCronos  "url"   usuario  senha  "dirMaisNomeArqUploadXML"   "dirMaisNomeArqRetornoXML"   "dirMaisNomeArqRetornoStatusCodeHTTP"
  
-REM Versão atual - com único diretório fixo:
-"%JAVA_HOME%\bin\java.exe"   -cp  ponte-integracao-pcronos-2.1.0.jar  pcronos.integracao.comprador.PonteWebServicesPortalCronos  "url"   usuario  senha  "NomeArqUploadXML"   "NomeArqRetornoXML"   "ArqRetornoStatusCodeHTTP"
+REM Versão atual - com um único diretório fixo:
+"%JAVA_HOME%\bin\java.exe"  -cp  ponte-integracao-pcronos-2.1.0.jar  pcronos.integracao.comprador.PonteWebServicesPortalCronos  "url"   usuario  senha  NomeArqUploadXML   NomeArqRetornoXML   ArqRetornoStatusCodeHTTP
+
+Exemplo:
+"%JAVA_HOME%\bin\java.exe"  -cp  ponte-integracao-pcronos-2.1.0.jar  pcronos.integracao.comprador.PonteWebServicesPortalCronos "http://www.portalcronos.com.br:81/v2/api/Requisicao/PostFileRequisicao" ws-sjcc 123456 req_10798130000175_243680_20200724_145856.xml Ret_10798130000175_243680_20200724_145856.xml Status_10798130000175_243680_20200724_145856.txt
  
 Observações:
-1. Os últimos 3 parâmetros devem ser passados com aspas duplas, veja o exemplo acima;
+1. O parâmetro "url" deve ser passado com aspas duplas, veja o exemplo acima;
  
-2. Dentro dos últimos 3 parâmetros eventuais caracteres \ dos diretórios e eventuais caracteres " devem ser precedidos pelo "escape character" \ .
-    Eventuais caracteres / não precisam disso.
+2. Dentro do parâmetro "url" é melhor usar os caracteres /  e não \ para não precisar de "escape characters".
  
 3. A ponte Java é independente do web service do Portal Cronos e pode ser usado
     para upload de qualquer arquivo XML para qualquer web service do Portal Cronos
     como por exemplo "PostFileRequisicao", "PostFileRecebimentoOrdemCompra", "PostFileSituacaoOrdemCompra", etc.
  
-4. Na vesão atual da ponte o diretório para os 3 tipos de arquivos é um diretório único e um diretório fixo no programa. 
+4. Na versão atual da ponte o diretório para os 3 tipos de arquivos é um diretório único e um diretório fixo no programa. 
    O diretório fixo é C:/ProgramData/PortalCronos/ e não é C:/temp/ para evitar prejuizos graves e até paradas impeditivas 
    da integração no futuro.
    

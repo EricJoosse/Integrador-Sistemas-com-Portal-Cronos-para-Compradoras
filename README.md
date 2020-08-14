@@ -12,11 +12,13 @@ __A integração tem as seguintes duas partes :__
    Esta parte se encontra no BitBucket.
    
 Os seguintes sistemas já foram integrados com o Portal Cronos : 
+* SAP	     
 * APS	     
 * WinThor   
 * IFS       
 * 3LM       
 * MVarandas
+* Datasul (em andamento)
 
 Este projeto é independente do IDE (Eclipse, Netbeans, etc.), porém usa Maven. 
 Se preferir não usar Maven, veja as versões de cada dependência externa no arquivo pom.xml.

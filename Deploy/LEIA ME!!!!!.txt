@@ -1,5 +1,5 @@
-1. Compactar o conteúdo do diretório /Deploy/ exceto este LEAIMA!!!!.txt
-   para o arquivo "PonteJavaIntegraçãoPCronos.2.1.0.zip" sem espaços no nome do arquivo.
+1. Compactar o conteúdo do diretório /Deploy/ exceto este LEIA ME!!!!.txt
+   para o arquivo "PonteJavaIntegraçãoPCronos.2.1.1.zip" sem espaços no nome do arquivo.
     
 2. Colocar o aquivo zippado no raiz do site 52.170.47.238, porta 80
  
@@ -7,7 +7,7 @@
 
 Carlos,
   
-    coloquei uma versão nova 2.1.0 da ponte java no link http://52.170.47.238/PonteJavaIntegraçãoPCronos.2.1.0.zip, 
+    coloquei uma versão nova 2.1.1 da ponte java no link http://52.170.47.238/PonteJavaIntegraçãoPCronos.2.1.1.zip, 
 feita com a mesma versão antiga 1.7 de Java que o JBoss da TOTVS usa. 
  
 Esta versão da ponte vem com mais diversos outros arquivos .jar. 
@@ -26,7 +26,7 @@ Eric
  
 Carlos,
   
-    coloquei uma versão nova da ponte java no link http://52.170.47.238/PonteJavaIntegraçãoPCronos.2.1.0.zip, 
+    coloquei uma versão nova da ponte java no link http://52.170.47.238/PonteJavaIntegraçãoPCronos.2.1.1.zip, 
 que foi alterada para ficar usando o diretório C:/ProgramData/PortalCronos/ fixo na ponte java. 
  
 Favor descompactar este arquivo .zip mantendo a mesma estrutura de subdiretórios que têm dentro deste arquivo zippado.
