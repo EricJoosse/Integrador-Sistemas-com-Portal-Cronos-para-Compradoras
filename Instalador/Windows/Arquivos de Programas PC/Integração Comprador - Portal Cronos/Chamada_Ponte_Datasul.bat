@@ -10,3 +10,8 @@ REM "%JAVA_HOME%\bin\java" -cp ponte-integracao-pcronos-2.1.1.jar pcronos.integr
  
 REM Versão atual - com único diretório fixo:
 "%JAVA_HOME%\bin\java" -cp ponte-integracao-pcronos-2.1.1.jar pcronos.integracao.comprador.PonteWebServicesPortalCronos "http://www.portalcronos.com.br:81/v2/api/Requisicao/PostFileRequisicao" ws-sjcc 123456 req_10798130000175_243680_20200724_145856.xml Ret_10798130000175_243680_20200724_145856.xml Status_10798130000175_243680_20200724_145856.txt
+
+REM Descomentar o seguinte para testar ou debugar os arquivos de retorno:
+REM echo.
+REM type C:\ProgramData\PortalCronos\Ret_10798130000175_243680_20200724_145856.xml
+REM type C:\ProgramData\PortalCronos\Status_10798130000175_243680_20200724_145856.txt

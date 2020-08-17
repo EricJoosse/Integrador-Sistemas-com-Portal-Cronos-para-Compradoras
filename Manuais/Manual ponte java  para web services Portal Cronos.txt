@@ -40,10 +40,18 @@ REM "%JAVA_HOME%\bin\java.exe"   -cp  ponte-integracao-pcronos-2.1.0.jar  pcrono
 REM Versão atual - com um único diretório fixo:
 "%JAVA_HOME%\bin\java.exe"  -cp  ponte-integracao-pcronos-2.1.0.jar  pcronos.integracao.comprador.PonteWebServicesPortalCronos  "url"   usuario  senha  NomeArqUploadXML   NomeArqRetornoXML   ArqRetornoStatusCodeHTTP
 
+
 Exemplo:
+--------
 "%JAVA_HOME%\bin\java.exe"  -cp  ponte-integracao-pcronos-2.1.0.jar  pcronos.integracao.comprador.PonteWebServicesPortalCronos "http://www.portalcronos.com.br:81/v2/api/Requisicao/PostFileRequisicao" ws-sjcc 123456 req_10798130000175_243680_20200724_145856.xml Ret_10798130000175_243680_20200724_145856.xml Status_10798130000175_243680_20200724_145856.txt
+REM Descomentar o seguinte para testar ou debugar os arquivos de retorno:
+REM echo.
+REM type C:\ProgramData\PortalCronos\Ret_10798130000175_243680_20200724_145856.xml
+REM type C:\ProgramData\PortalCronos\Status_10798130000175_243680_20200724_145856.txt
+
  
 Observações:
+------------
 1. O parâmetro "url" deve ser passado com aspas duplas, veja o exemplo acima;
  
 2. Dentro do parâmetro "url" é melhor usar os caracteres /  e não \ para não precisar de "escape characters".
