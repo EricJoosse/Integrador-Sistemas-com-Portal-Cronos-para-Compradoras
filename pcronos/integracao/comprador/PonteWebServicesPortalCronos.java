@@ -6,15 +6,16 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.Instant;
 
-//import java.time.LocalDateTime;   // Para Java 1.8 e maior
+//import java.time.Instant;                   // Para Java 1.8 e maior
+//import java.time.ZoneId;                    // Para Java 1.8 e maior
+//import java.time.format.DateTimeFormatter;  // Para Java 1.8 e maior
+//import java.time.LocalDateTime;             // Para Java 1.8 e maior
 
 import java.util.Date;             // Para Java 1.7 e menor
+import java.util.Calendar;         // Para Java 1.7 e menor
 import java.text.SimpleDateFormat; // Para Java 1.7 e menor
 
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 
 import javax.ws.rs.core.MediaType;
 import com.sun.jersey.api.client.Client;
@@ -32,6 +33,7 @@ public final class PonteWebServicesPortalCronos
 {
   private static final String DIR_TEMP = "C:/ProgramData/PortalCronos/XML";
   public static final String DIR_ARQS_PONTE_MSDOS = "C:/ProgramData/PortalCronos/";
+  public static final int QTD_DIAS_ARQS_XML_GUARDADOS = 30;
 
   private static RetornoWebServiceDTO upload_File(String url, File f, String formName, String username, String senha) throws FileNotFoundException 
   { 
@@ -111,7 +113,7 @@ public final class PonteWebServicesPortalCronos
    // LocalDateTime horaInicio = LocalDateTime.now();
 
       // Para Java 1.7 e menor:
-	  Date horaInicio = new Date(System.currentTimeMillis());
+      Calendar horaInicio = Calendar.getInstance(); 
 
 	  try
 	  {
@@ -123,13 +125,27 @@ public final class PonteWebServicesPortalCronos
 	       	   for (final File file : dirTemp.listFiles()) 
 			   {
 	       	 	   // Para Java 1.8 e maior:
-//				   Date datahoraArquivo = Date.ofInstant(Instant.ofEpochMilli(file.lastModified()), ZoneId.systemDefault()); 
+	       		   
+//				   LocalDateTime datahoraArquivo = LocalDateTime.ofInstant(Instant.ofEpochMilli(file.lastModified()), ZoneId.systemDefault()); 
 //				   
-//				   if (datahoraArquivo.isBefore(horaInicio.minusDays(7))) 
+//				   if (datahoraArquivo.isBefore(horaInicio.minusDays(QTD_DIAS_ARQS_XML_GUARDADOS))) 
 //				   {
 //				      file.delete();
 //				   }
-			   }
+
+
+
+	       		   // Para Java 1.7 e menor:
+
+	       	       Calendar datahoraArquivo = Calendar.getInstance(); 
+	       	       datahoraArquivo.setTimeInMillis(file.lastModified());
+	       	       horaInicio.add(Calendar.DAY_OF_MONTH, (0 - QTD_DIAS_ARQS_XML_GUARDADOS));
+	       	       
+				   if (datahoraArquivo.before(horaInicio)) 
+				   {
+				      file.delete();
+				   }
+			  }
 	  }
 	  catch (Exception ex)
 	  {
