@@ -16,7 +16,14 @@ Este método retorna um objeto de tipo pcronos.integracao.comprador.RetornoWebSer
   - String MensagensXML: string XML com a lista de eventuais erros que pode estar vazio, 
 apenas repassando o retorno do web service, veja o manual de Integração.
  
-Observação: na versão atual da ponte não chame o método "main".
+Observações: 
+1. a versão atual da ponte não chame o método "main".
+ 
+2. A ponte faz limpeza automática do subdiretório C:/ProgramData/PortalCronos/XML/ que é um subdiretório 
+   para uso interno pela ponte. A ponte guarda os arquivos internos 30 dias. 
+   O diretório raiz  C:/ProgramData/PortalCronos/ é para uso pelo sistema que integra com o Portal Cronos. 
+   A ponte não faz limpeza automática deste diretório raiz. 
+ 
  
 Espero que vocês já têm uma infra-estrutura pronta, dentro ou fora do Datasul, para executar qualquer método java em qualquer arquivo .jar diferente de métodos "main". 
 Caso contrário, vocês vão ter que criar esta infraestrutura> Se precisar poss ajudar com isso, talvez até conectado via AnyDesk. 
@@ -64,3 +71,27 @@ Observações:
    O diretório fixo é C:/ProgramData/PortalCronos/ e não é C:/temp/ para evitar prejuizos graves e até paradas impeditivas 
    da integração no futuro.
    
+5. A ponte faz limpeza automática do subdiretório C:/ProgramData/PortalCronos/XML/ que é um subdiretório 
+   para uso interno pela ponte. A ponte guarda os arquivos internos 30 dias. 
+   O diretório raiz  C:/ProgramData/PortalCronos/ é para uso pelo sistema que integra com o Portal Cronos. 
+   A ponte não faz limpeza automática deste diretório raiz. 
+   
+   
+   
+(  ) Enviar ainda para Carlos da Datasul:
+ 
+Carlos, bom dia!
+  
+  me esqueci dizer que a ponte faz limpeza automática do subdiretório C:/ProgramData/PortalCronos/XML/ 
+que é um subdiretório para uso interno pela ponte. A ponte guarda os arquivos internos 30 dias. 
+O diretório raiz  C:/ProgramData/PortalCronos/ é para uso pelo sistema que integra com o Portal Cronos. 
+A ponte não faz limpeza automática deste diretório raiz.
+ 
+Dúvida: 
+O seu programa faz esta limpeza automática dos arquivos que o Datasul gera? 
+Caso contrário, eu mesmo posso fazer isso dentro da ponte, eu faria isso em 5 minutos com apenas uma linha de programação Java. 
+ 
+Eric
+ 
+  
+     
