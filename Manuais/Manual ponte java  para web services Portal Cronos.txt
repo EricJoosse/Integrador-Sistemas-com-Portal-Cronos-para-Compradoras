@@ -17,9 +17,16 @@ Este método retorna um objeto de tipo pcronos.integracao.comprador.RetornoWebSer
 apenas repassando o retorno do web service, veja o manual de Integração.
  
 Observações: 
-1. a versão atual da ponte não chame o método "main".
+1. A versão atual da ponte não chame o método "main".
  
-2. A ponte faz limpeza automática do subdiretório C:/ProgramData/PortalCronos/XML/ que é um subdiretório 
+2. A ponte mesma cria os 2 tipos de arquivos de retorno fisicamente se não existir arquivos com estes nomes.
+   O sistema que integra com o Portal Cronos apenas deve passar os NOMES dos arquivos de retorno e após a chamada da ponte 
+   fazer a leitura destes mesmos arquivos de retorno. 
+ 
+3. Os nomes dos arquivos de retorno devem ser diferentes em cada chamada da ponte 
+   para evitar interferência indevida de requisições diferentes.
+ 
+4. A ponte faz limpeza automática do subdiretório C:/ProgramData/PortalCronos/PonteJava/ que é um subdiretório 
    para uso interno pela ponte. A ponte guarda os arquivos internos 30 dias. 
    O diretório raiz  C:/ProgramData/PortalCronos/ é para uso pelo sistema que integra com o Portal Cronos. 
    A ponte não faz limpeza automática deste diretório raiz. 
@@ -34,7 +41,7 @@ Atc,
 Eric
  
  
-A. Uso da ponte com MS-DOS:
+B. Uso da ponte com MS-DOS:
 ===========================
 
 cd\
@@ -71,7 +78,14 @@ Observações:
    O diretório fixo é C:/ProgramData/PortalCronos/ e não é C:/temp/ para evitar prejuizos graves e até paradas impeditivas 
    da integração no futuro.
    
-5. A ponte faz limpeza automática do subdiretório C:/ProgramData/PortalCronos/XML/ que é um subdiretório 
+5. A ponte mesma cria os 2 tipos de arquivos de retorno fisicamente se não existir arquivos com estes nomes.
+   O sistema que integra com o Portal Cronos apenas deve passar os NOMES dos arquivos de retorno e após a chamada da ponte 
+   fazer a leitura destes mesmos arquivos de retorno. 
+ 
+6. Os nomes dos arquivos de retorno devem ser diferentes em cada chamada da ponte 
+   para evitar interferência indevida de requisições diferentes.
+ 
+7. A ponte faz limpeza automática do subdiretório C:/ProgramData/PortalCronos/PonteJava/ que é um subdiretório 
    para uso interno pela ponte. A ponte guarda os arquivos internos 30 dias. 
    O diretório raiz  C:/ProgramData/PortalCronos/ é para uso pelo sistema que integra com o Portal Cronos. 
    A ponte não faz limpeza automática deste diretório raiz. 
@@ -82,7 +96,7 @@ Observações:
  
 Carlos, bom dia!
   
-  me esqueci dizer que a ponte faz limpeza automática do subdiretório C:/ProgramData/PortalCronos/XML/ 
+  me esqueci dizer que a ponte faz limpeza automática do subdiretório C:/ProgramData/PortalCronos/PonteJava/ 
 que é um subdiretório para uso interno pela ponte. A ponte guarda os arquivos internos 30 dias. 
 O diretório raiz  C:/ProgramData/PortalCronos/ é para uso pelo sistema que integra com o Portal Cronos. 
 A ponte não faz limpeza automática deste diretório raiz.

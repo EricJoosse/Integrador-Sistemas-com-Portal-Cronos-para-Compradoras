@@ -31,7 +31,7 @@ import com.sun.jersey.multipart.file.FileDataBodyPart;
 
 public final class PonteWebServicesPortalCronos 
 {
-  private static final String DIR_TEMP = "C:/ProgramData/PortalCronos/XML";
+  private static final String DIR_TEMP = "C:/ProgramData/PortalCronos/PonteJava";
   public static final String DIR_ARQS_PONTE_MSDOS = "C:/ProgramData/PortalCronos/";
   public static final int QTD_DIAS_ARQS_XML_GUARDADOS = 30;
 
@@ -194,16 +194,32 @@ public final class PonteWebServicesPortalCronos
 	   	 diretorioPonteMSDOS.mkdirs();
 	  }
 	  // FIM versão atual - com um único diretório fixo  
+	  
+	  
+	  File fDirMaisNomeArqUploadXML = new File(dirMaisNomeArqUploadXML);
+	  if (!fDirMaisNomeArqUploadXML.exists())
+		  throw new Exception("O arquivo " + ArqUploadXML + " para upload para o Portal Cronos não existe!");
+	  
+	  
+	  File fDirMaisNomeArqRetornoXML = new File(dirMaisNomeArqRetornoXML);
+	  if (fDirMaisNomeArqRetornoXML.exists())
+		  throw new Exception("O arquivo de retorno XML " + ArqRetornoXML + " já existe! Nunca pode ser usado um arquivo existente para evitar interferência indevida de requisições diferentes!");
 
+	  
+	  File fDirMaisNomeArqRetornoStatusCodeHTTP = new File(dirMaisNomeArqRetornoStatusCodeHTTP);
+	  if (fDirMaisNomeArqRetornoStatusCodeHTTP.exists())
+		  throw new Exception("O arquivo de retorno de HTTP status code " + ArqRetornoStatusCodeHTTP + " já existe! Nunca pode ser usado um arquivo existente para evitar interferência indevida de requisições diferentes!");
+	  
+	  
 	  String strXML = new String(Files.readAllBytes(Paths.get(dirMaisNomeArqUploadXML)), Charset.forName("ISO-8859-1"));
 	  
    	  RetornoWebServiceDTO retornoWebServiceDTO = uploadStringXML(url, strXML, usuario, senha); 
 
-      java.io.FileWriter fwXML = new java.io.FileWriter(dirMaisNomeArqRetornoXML);
+      java.io.FileWriter fwXML = new java.io.FileWriter(dirMaisNomeArqRetornoXML); // Cria o arquivo fisicamente se não existir um arquivo com este nome
       fwXML.write(retornoWebServiceDTO.MensagensXML);
       fwXML.close();
     
-      java.io.FileWriter fwHTTP = new java.io.FileWriter(dirMaisNomeArqRetornoStatusCodeHTTP);
+      java.io.FileWriter fwHTTP = new java.io.FileWriter(dirMaisNomeArqRetornoStatusCodeHTTP); // Cria o arquivo fisicamente se não existir um arquivo com este nome
       fwHTTP.write(retornoWebServiceDTO.StatusCodeHTTP);
       fwHTTP.close();
     
