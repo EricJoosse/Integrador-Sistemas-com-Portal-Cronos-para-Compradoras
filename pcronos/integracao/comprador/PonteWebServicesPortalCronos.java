@@ -3,6 +3,7 @@ package pcronos.integracao.comprador;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.FileWriter;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -185,6 +186,9 @@ public final class PonteWebServicesPortalCronos
 	  String ArqRetornoXML = args[4];
 	  String ArqRetornoStatusCodeHTTP = args[5];
 	  
+	  if (ArqRetornoStatusCodeHTTP.equals(ArqRetornoXML))
+		  throw new Exception("O nome do arquivo de retorno do HTTP status code não pode ser igual ao nome do arquivo de retorno XML!");
+	  
 	  String dirMaisNomeArqUploadXML = DIR_ARQS_PONTE_MSDOS + ArqUploadXML;
 	  String dirMaisNomeArqRetornoXML = DIR_ARQS_PONTE_MSDOS + ArqRetornoXML;
 	  String dirMaisNomeArqRetornoStatusCodeHTTP = DIR_ARQS_PONTE_MSDOS + ArqRetornoStatusCodeHTTP;
@@ -203,23 +207,27 @@ public final class PonteWebServicesPortalCronos
 	  
 	  File fDirMaisNomeArqRetornoXML = new File(dirMaisNomeArqRetornoXML);
 	  if (fDirMaisNomeArqRetornoXML.exists())
-		  throw new Exception("O arquivo de retorno XML " + ArqRetornoXML + " já existe! Nunca pode ser usado um arquivo existente para evitar interferência indevida de requisições diferentes!");
+		  throw new Exception("O arquivo de retorno XML " + ArqRetornoXML + " já existe! Nunca pode ser usado um arquivo já existente! (para evitar interferência indevida de requisições diferentes)");
 
 	  
 	  File fDirMaisNomeArqRetornoStatusCodeHTTP = new File(dirMaisNomeArqRetornoStatusCodeHTTP);
 	  if (fDirMaisNomeArqRetornoStatusCodeHTTP.exists())
-		  throw new Exception("O arquivo de retorno de HTTP status code " + ArqRetornoStatusCodeHTTP + " já existe! Nunca pode ser usado um arquivo existente para evitar interferência indevida de requisições diferentes!");
+		  throw new Exception("O arquivo de retorno de HTTP status code " + ArqRetornoStatusCodeHTTP + " já existe! Nunca pode ser usado um arquivo já existente! (para evitar interferência indevida de requisições diferentes)");
 	  
 	  
 	  String strXML = new String(Files.readAllBytes(Paths.get(dirMaisNomeArqUploadXML)), Charset.forName("ISO-8859-1"));
 	  
    	  RetornoWebServiceDTO retornoWebServiceDTO = uploadStringXML(url, strXML, usuario, senha); 
 
-      java.io.FileWriter fwXML = new java.io.FileWriter(dirMaisNomeArqRetornoXML); // Cria o arquivo fisicamente se não existir um arquivo com este nome
+      // O seguinte cria o arquivo fisicamente se não existir um arquivo com este nome.
+   	  // Parâmetro "append = "true" é uma segurança extra para detectar eventuais interferências indevidas de requisições diferentes: 
+      FileWriter fwXML = new FileWriter(dirMaisNomeArqRetornoXML, true); 
       fwXML.write(retornoWebServiceDTO.MensagensXML);
       fwXML.close();
     
-      java.io.FileWriter fwHTTP = new java.io.FileWriter(dirMaisNomeArqRetornoStatusCodeHTTP); // Cria o arquivo fisicamente se não existir um arquivo com este nome
+      // O seguinte cria o arquivo fisicamente se não existir um arquivo com este nome.
+   	  // Parâmetro "append = "true" é uma segurança extra para detectar eventuais interferências indevidas de requisições diferentes: 
+      FileWriter fwHTTP = new FileWriter(dirMaisNomeArqRetornoStatusCodeHTTP, true);
       fwHTTP.write(retornoWebServiceDTO.StatusCodeHTTP);
       fwHTTP.close();
     

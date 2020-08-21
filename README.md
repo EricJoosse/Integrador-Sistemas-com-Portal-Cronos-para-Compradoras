@@ -23,4 +23,6 @@ Os seguintes sistemas já foram integrados com o Portal Cronos :
 Este projeto é independente do IDE (Eclipse, Netbeans, etc.), porém usa Maven. 
 Se preferir não usar Maven, veja as versões de cada dependência externa no arquivo pom.xml.
 
- 
+Além de integração completa este projeto contem também uma ponte Java que é um complemento para sistemas
+que usam linguagens de programação incompletas que não conseguem fazer upload de arquivos, 
+como por exemplo o Datasul que usa a linguagem POSTGRE.  
