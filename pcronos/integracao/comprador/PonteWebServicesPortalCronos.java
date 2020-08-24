@@ -36,7 +36,7 @@ public final class PonteWebServicesPortalCronos
   public static final String DIR_ARQS_PONTE_MSDOS = "C:/ProgramData/PortalCronos/";
   public static final int QTD_DIAS_ARQS_XML_GUARDADOS = 30;
 
-  private static RetornoWebServiceDTO upload_File(String url, File f, String formName, String username, String senha) throws FileNotFoundException 
+  private static RetornoWebServiceDTO upload_File(String url, File f, String formName, String username, String senha, Boolean toDebugar) throws FileNotFoundException 
   { 
         final ClientConfig config = new DefaultClientConfig();
         final Client client = Client.create(config);
@@ -56,20 +56,27 @@ public final class PonteWebServicesPortalCronos
                 multiPart);
         
         String respostaStatusCodeHTTP = Integer.toString(clientResp.getClientResponseStatus().getStatusCode());
-        System.out.println("upload_File(): respostaStatusCodeHTTP: " + respostaStatusCodeHTTP);
-        System.out.println("upload_File(): HTTP Status Code = " + respostaStatusCodeHTTP + " (" + clientResp.getClientResponseStatus().getReasonPhrase() + ")");
+        if (toDebugar) System.out.println("upload_File(): respostaStatusCodeHTTP: " + respostaStatusCodeHTTP);
+        if (toDebugar) System.out.println("upload_File(): HTTP Status Code = " + respostaStatusCodeHTTP + " (" + clientResp.getClientResponseStatus().getReasonPhrase() + ")");
  
         // Neste caso JAXB seria mais trabalhoso do que SAX e DOM,
     	// então não usar um Entity :
         String respostaXML = clientResp.getEntity(String.class);
-        System.out.println("upload_File(): respostaXML = " + respostaXML) ;
+        if (toDebugar) System.out.println("upload_File(): respostaXML = " + respostaXML) ;
         
         client.destroy();
          
         return new RetornoWebServiceDTO(respostaStatusCodeHTTP, respostaXML);
   }
 
+
+  
   public static RetornoWebServiceDTO uploadStringXML(String url, String stringXML, String usuario, String senha) throws IOException, FileNotFoundException
+  {
+	  return uploadStringXML(url, stringXML, usuario, senha, false);
+  }
+  
+  public static RetornoWebServiceDTO uploadStringXML(String url, String stringXML, String usuario, String senha, Boolean toDebugar) throws IOException, FileNotFoundException
   { 
 	  	File diretorioXML = new File(DIR_TEMP + "/");
 	  	if (!diretorioXML.exists()) { 
@@ -99,7 +106,7 @@ public final class PonteWebServicesPortalCronos
 	    fw.write(stringXML);
 	    fw.close();
 	    
-	    RetornoWebServiceDTO retornoWebServiceDTO = upload_File(url, new File(filenameRequisicao), "form1", usuario, senha) ;
+	    RetornoWebServiceDTO retornoWebServiceDTO = upload_File(url, new File(filenameRequisicao), "form1", usuario, senha, toDebugar) ;
 	 // String respostaStatusCodeHTTP = retornoWebServiceDTO.StatusCodeHTTP;
 	 // String respostaXML =  retornoWebServiceDTO.MensagensXML;
 	    
@@ -169,8 +176,8 @@ public final class PonteWebServicesPortalCronos
 //    System.out.println(retornoWebServiceDTO.MensagensXML);
 //    
 
-	  if (args.length != 6)
-		  throw new Exception("Erro! Não foram passados 6 parâmetros!");
+	  if (args.length != 6 && args.length != 7)
+		  throw new Exception("Erro! Não foram passados 6 ou 7 parâmetros!");
 	  
 	  String url = args[0];
 	  String usuario = args[1];
@@ -185,6 +192,13 @@ public final class PonteWebServicesPortalCronos
 	  String ArqUploadXML = args[3];
 	  String ArqRetornoXML = args[4];
 	  String ArqRetornoStatusCodeHTTP = args[5];
+	  
+	  Boolean toDebugar = null;
+	  
+	  if (args.length == 6) 
+		  toDebugar = false;
+	  else if (args.length == 7) 
+	      toDebugar = Boolean.parseBoolean(args[6]);
 	  
 	  if (ArqRetornoStatusCodeHTTP.equals(ArqRetornoXML))
 		  throw new Exception("O nome do arquivo de retorno do HTTP status code não pode ser igual ao nome do arquivo de retorno XML!");
@@ -217,7 +231,7 @@ public final class PonteWebServicesPortalCronos
 	  
 	  String strXML = new String(Files.readAllBytes(Paths.get(dirMaisNomeArqUploadXML)), Charset.forName("ISO-8859-1"));
 	  
-   	  RetornoWebServiceDTO retornoWebServiceDTO = uploadStringXML(url, strXML, usuario, senha); 
+   	  RetornoWebServiceDTO retornoWebServiceDTO = uploadStringXML(url, strXML, usuario, senha, toDebugar); 
 
       // O seguinte cria o arquivo fisicamente se não existir um arquivo com este nome.
    	  // Parâmetro "append = "true" é uma segurança extra para detectar eventuais interferências indevidas de requisições diferentes: 
