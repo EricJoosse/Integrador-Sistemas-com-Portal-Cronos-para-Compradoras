@@ -1,0 +1,19 @@
+Manual Upgrade dos Ambientes de Produção de 2.1.0 para 2.1.1 
+============================================================
+
+1. (i)  Copiar o arquivo novo ponte-integracao-pcronos-2.1.1.jar do diretório /Deploy/ 
+        no projeto Eclipse para o servidor do comprador 
+        (D:\totvs\projetos-datasul11\ccp0001\Includes\ na JC).
+         
+   (ii) Apagar a versão anterior ponte-integracao-pcronos-2.1.0.jar.
+ 
+2. No servidor do comprador, no arquivo .bat (PCronos.bat no servidor da JC):
+
+   (i)  Adicionar " false" no final da chamada da ponte
+
+   (ii) Adicionar o seguinte depois da chamada da ponte:
+
+REM Descomentar o seguinte para testar ou debugar os arquivos de retorno:
+REM echo.
+type C:\ProgramData\PortalCronos\Ret_10798130000175_243680_20200724_145856.xml
+type C:\ProgramData\PortalCronos\Status_10798130000175_243680_20200724_145856.txt
