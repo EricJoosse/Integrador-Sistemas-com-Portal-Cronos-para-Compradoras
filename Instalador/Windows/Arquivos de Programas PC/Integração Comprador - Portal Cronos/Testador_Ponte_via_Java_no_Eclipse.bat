@@ -1,0 +1,2 @@
+set path=C:\Program Files\Java\jre1.8.0_92\bin;%path%
+C:/"Program Files"/Java/jre1.8.0_92/bin/java.exe -cp ponte-integracao-pcronos-2.1.1.jar pcronos.integracao.comprador.PonteWebServicesPortalCronos "http://www.portalcronos.com.br:81/v2/api/Requisicao/PostFileRequisicao" ws-sjcc 123456 req_10798130000175_243680_20200724_145856.xml Ret_10798130000175_243680_20200724_145856.xml Status_10798130000175_243680_20200724_145856.txt true
