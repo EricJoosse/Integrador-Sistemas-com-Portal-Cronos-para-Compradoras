@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 
 //import java.time.Instant;                   // Para Java 1.8 e maior
 //import java.time.ZoneId;                    // Para Java 1.8 e maior
-//import java.time.format.DateTimeFormatter;  // Para Java 1.8 e maior
+import java.time.format.DateTimeFormatter;  // Para Java 1.8 e maior
 //import java.time.LocalDateTime;             // Para Java 1.8 e maior
 
 import java.util.Date;             // Para Java 1.7 e menor
@@ -56,13 +56,13 @@ public final class PonteWebServicesPortalCronos
                 multiPart);
         
         String respostaStatusCodeHTTP = Integer.toString(clientResp.getClientResponseStatus().getStatusCode());
-        if (toDebugar) System.out.println("upload_File(): respostaStatusCodeHTTP: " + respostaStatusCodeHTTP);
-        if (toDebugar) System.out.println("upload_File(): HTTP Status Code = " + respostaStatusCodeHTTP + " (" + clientResp.getClientResponseStatus().getReasonPhrase() + ")");
+        if (toDebugarForaEclipse) System.out.println("upload_File(): respostaStatusCodeHTTP: " + respostaStatusCodeHTTP);
+        if (toDebugarForaEclipse) System.out.println("upload_File(): HTTP Status Code = " + respostaStatusCodeHTTP + " (" + clientResp.getClientResponseStatus().getReasonPhrase() + ")");
  
         // Neste caso JAXB seria mais trabalhoso do que SAX e DOM,
     	// então não usar um Entity :
         String respostaXML = clientResp.getEntity(String.class);
-        if (toDebugar) System.out.println("upload_File(): respostaXML = " + respostaXML) ;
+        if (toDebugarForaEclipse) System.out.println("upload_File(): respostaXML = " + respostaXML) ;
         
         client.destroy();
          
@@ -76,14 +76,32 @@ public final class PonteWebServicesPortalCronos
 	  return uploadStringXML(url, stringXML, usuario, senha, false);
   }
   
-  public static RetornoWebServiceDTO uploadStringXML(String url, String stringXML, String usuario, String senha, Boolean toDebugar) throws IOException, FileNotFoundException
+  public static RetornoWebServiceDTO uploadStringXML(String url, String stringXML, String usuario, String senha, Boolean toDebugarForaEclipse) throws IOException, FileNotFoundException
   { 
 	  	File diretorioXML = new File(DIR_TEMP + "/");
 	  	if (!diretorioXML.exists()) { 
 	  		diretorioXML.mkdirs();
 	  	}
 	  	
-	    purgeArquivosTemp();
+	    purgeArquivosTemp(toDebugarForaEclipse);
+	    
+	    
+	    
+	    
+	    
+	    
+	    // Descomentar a seguinte linha para testar apenas a limpeza dos arquivos:
+	    if (1 == 1) return null;
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
 	    
   	    // Para Java 1.7 e menor:
 		SimpleDateFormat SdfFormatter = new SimpleDateFormat("yyyy.MM.dd_HH.mm.ss");
@@ -106,7 +124,7 @@ public final class PonteWebServicesPortalCronos
 	    fw.write(stringXML);
 	    fw.close();
 	    
-	    RetornoWebServiceDTO retornoWebServiceDTO = upload_File(url, new File(filenameRequisicao), "form1", usuario, senha, toDebugar) ;
+	    RetornoWebServiceDTO retornoWebServiceDTO = upload_File(url, new File(filenameRequisicao), "form1", usuario, senha, toDebugarForaEclipse) ;
 	 // String respostaStatusCodeHTTP = retornoWebServiceDTO.StatusCodeHTTP;
 	 // String respostaXML =  retornoWebServiceDTO.MensagensXML;
 	    
@@ -115,7 +133,7 @@ public final class PonteWebServicesPortalCronos
   }
 
 
-  private static void purgeArquivosTemp()
+  private static void purgeArquivosTemp(Boolean toDebugarForaEclipse)
   {
  	  // Para Java 1.8 e maior:
    // LocalDateTime horaInicio = LocalDateTime.now();
@@ -149,6 +167,13 @@ public final class PonteWebServicesPortalCronos
 	       	       datahoraArquivo.setTimeInMillis(file.lastModified());
 	       	       horaInicio.add(Calendar.DAY_OF_MONTH, (0 - QTD_DIAS_ARQS_XML_GUARDADOS));
 	       	       
+		       	   if (toDebugarForaEclipse)
+		       	   {
+		     	       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+		       	       System.out.println("datahoraArquivo = " + datahoraArquivo.format(formatter));
+		       	       System.out.println("horaInicio = " + horaInicio.format(formatter));
+		       	   }
+	       	       
 				   if (datahoraArquivo.before(horaInicio)) 
 				   {
 				      file.delete();
@@ -176,6 +201,7 @@ public final class PonteWebServicesPortalCronos
 //    System.out.println(retornoWebServiceDTO.MensagensXML);
 //    
 
+	  
 	  if (args.length != 6 && args.length != 7)
 		  throw new Exception("Erro! Não foram passados 6 ou 7 parâmetros!");
 	  
@@ -193,12 +219,12 @@ public final class PonteWebServicesPortalCronos
 	  String ArqRetornoXML = args[4];
 	  String ArqRetornoStatusCodeHTTP = args[5];
 	  
-	  Boolean toDebugar = null;
+	  Boolean toDebugarForaEclipse = null;
 	  
 	  if (args.length == 6) 
-		  toDebugar = false;
+		  toDebugarForaEclipse = false;
 	  else if (args.length == 7) 
-	      toDebugar = Boolean.parseBoolean(args[6]);
+	      toDebugarForaEclipse = Boolean.parseBoolean(args[6]);
 	  
 	  if (ArqRetornoStatusCodeHTTP.equals(ArqRetornoXML))
 		  throw new Exception("O nome do arquivo de retorno do HTTP status code não pode ser igual ao nome do arquivo de retorno XML!");
@@ -231,7 +257,7 @@ public final class PonteWebServicesPortalCronos
 	  
 	  String strXML = new String(Files.readAllBytes(Paths.get(dirMaisNomeArqUploadXML)), Charset.forName("ISO-8859-1"));
 	  
-   	  RetornoWebServiceDTO retornoWebServiceDTO = uploadStringXML(url, strXML, usuario, senha, toDebugar); 
+   	  RetornoWebServiceDTO retornoWebServiceDTO = uploadStringXML(url, strXML, usuario, senha, toDebugarForaEclipse); 
 
       // O seguinte cria o arquivo fisicamente se não existir um arquivo com este nome.
    	  // Parâmetro "append = "true" é uma segurança extra para detectar eventuais interferências indevidas de requisições diferentes: 
