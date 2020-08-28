@@ -3,6 +3,15 @@ echo %JAVA_HOME%
 
 chcp 1252>nul
 
+
+
+REM cd\
+REM cd ProgramData
+REM cd PortalCronos
+REM del Ret_10798130000175_243680_20200724_145856.xml
+
+
+
 if not exist C:/PCronos/"Integração Comprador - Portal Cronos"/Instalador/Windows/"Arquivos de Programas PC"/"Integração Comprador - Portal Cronos"/Testador_Ponte_via_MSDOS_no_Eclipse.bat (
     echo.
     echo          Este testador serve apena para testes dentro do Eclipse! O outro arquivo Chamada_Ponte_NomeSistema.bat serve para testes nos servidores dos compradores.
@@ -21,6 +30,7 @@ if not exist C:/PCronos/"Integração Comprador - Portal Cronos"/Instalador/Window
 
 REM Antigo - com diretórios flexíveis:
 REM "%JAVA_HOME%\bin\java -cp ponte-integracao-pcronos-2.1.1.jar pcronos.integracao.comprador.PonteWebServicesPortalCronos 'www.portalcronos.com.br:81\\v2\\api\\Requisicao\\PostFileRequisicao' ws-sjcc 123456 'c:\\temp\\req_10798130000175_243680_20200724_145856.xml' 'c:\\temp\\Ret_10798130000175_243680_20200724_145856.xml' 'c:\\temp\\Status_10798130000175_243680_20200724_145856.txt' true
+
 
 REM Versão atual - com único diretório fixo:
 set path=C:\JRE-1.7.0_80\bin

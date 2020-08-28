@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 
 //import java.time.Instant;                   // Para Java 1.8 e maior
 //import java.time.ZoneId;                    // Para Java 1.8 e maior
-import java.time.format.DateTimeFormatter;  // Para Java 1.8 e maior
+//import java.time.format.DateTimeFormatter;  // Para Java 1.8 e maior
 //import java.time.LocalDateTime;             // Para Java 1.8 e maior
 
 import java.util.Date;             // Para Java 1.7 e menor
@@ -36,7 +36,7 @@ public final class PonteWebServicesPortalCronos
   public static final String DIR_ARQS_PONTE_MSDOS = "C:/ProgramData/PortalCronos/";
   public static final int QTD_DIAS_ARQS_XML_GUARDADOS = 30;
 
-  private static RetornoWebServiceDTO upload_File(String url, File f, String formName, String username, String senha, Boolean toDebugar) throws FileNotFoundException 
+  private static RetornoWebServiceDTO upload_File(String url, File f, String formName, String username, String senha, Boolean toDebugarForaEclipse) throws FileNotFoundException 
   { 
         final ClientConfig config = new DefaultClientConfig();
         final Client client = Client.create(config);
@@ -86,26 +86,16 @@ public final class PonteWebServicesPortalCronos
 	    purgeArquivosTemp(toDebugarForaEclipse);
 	    
 	    
-	    
-	    
-	    
-	    
 	    // Descomentar a seguinte linha para testar apenas a limpeza dos arquivos:
-	    if (1 == 1) return null;
+	    // if (1 == 1) return null;
 	    
+
 	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-  	    // Para Java 1.7 e menor:
+	    // Para Java 1.7 e menor:
 		SimpleDateFormat SdfFormatter = new SimpleDateFormat("yyyy.MM.dd_HH.mm.ss");
 		Date horaEnv = new Date(System.currentTimeMillis());
+		
+		
 		
 		// Para Java 1.8 e maior:
 	 // LocalDateTime horaEnv = LocalDateTime.now();
@@ -114,10 +104,14 @@ public final class PonteWebServicesPortalCronos
 		String filenameRequisicao = DIR_TEMP + "/PostFile.";
 		filenameRequisicao += usuario + ".";
 		
+		
+		
 		// Para Java 1.8 e maior:
 	 // filenameRequisicao += horaEnv.format(Envformatter) + ".xml";
 
-  	    // Para Java 1.7 e menor:
+  	    
+		
+		// Para Java 1.7 e menor:
 		filenameRequisicao += SdfFormatter.format(horaEnv) + ".xml";
 
 	    java.io.FileWriter fw = new java.io.FileWriter(filenameRequisicao);
@@ -139,7 +133,11 @@ public final class PonteWebServicesPortalCronos
    // LocalDateTime horaInicio = LocalDateTime.now();
 
       // Para Java 1.7 e menor:
-      Calendar horaInicio = Calendar.getInstance(); 
+      Calendar dataHoraLimite = Calendar.getInstance(); 
+	  dataHoraLimite.add(Calendar.DAY_OF_MONTH, (0 - QTD_DIAS_ARQS_XML_GUARDADOS));
+
+	  SimpleDateFormat SdfFormatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+	  if (toDebugarForaEclipse) System.out.println("dataHoraLimite = " + SdfFormatter.format(dataHoraLimite.getTime()));
 
 	  try
 	  {
@@ -165,16 +163,10 @@ public final class PonteWebServicesPortalCronos
 
 	       	       Calendar datahoraArquivo = Calendar.getInstance(); 
 	       	       datahoraArquivo.setTimeInMillis(file.lastModified());
-	       	       horaInicio.add(Calendar.DAY_OF_MONTH, (0 - QTD_DIAS_ARQS_XML_GUARDADOS));
 	       	       
-		       	   if (toDebugarForaEclipse)
-		       	   {
-		     	       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-		       	       System.out.println("datahoraArquivo = " + datahoraArquivo.format(formatter));
-		       	       System.out.println("horaInicio = " + horaInicio.format(formatter));
-		       	   }
+		       	   if (toDebugarForaEclipse) System.out.println("datahoraArquivo = " + SdfFormatter.format(datahoraArquivo.getTime()));
 	       	       
-				   if (datahoraArquivo.before(horaInicio)) 
+				   if (datahoraArquivo.before(dataHoraLimite)) 
 				   {
 				      file.delete();
 				   }

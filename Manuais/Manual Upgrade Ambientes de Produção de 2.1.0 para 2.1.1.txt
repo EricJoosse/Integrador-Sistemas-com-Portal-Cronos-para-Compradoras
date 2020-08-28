@@ -17,3 +17,9 @@ REM Descomentar o seguinte para testar ou debugar os arquivos de retorno:
 REM echo.
 type C:\ProgramData\PortalCronos\Ret_10798130000175_243680_20200724_145856.xml
 type C:\ProgramData\PortalCronos\Status_10798130000175_243680_20200724_145856.txt
+
+
+3. No servidor do comprador, apagar o subdiretório antigo C:\ProgramData\PortalCronos\XML\
+   e possíveis outros subdiretórios antigos como por exemplo C:\ProgramData\PortalCronos\Upload\
+     
+   É para deixar apenas o subdiretório C:\ProgramData\PortalCronos\PonteJava\ 
