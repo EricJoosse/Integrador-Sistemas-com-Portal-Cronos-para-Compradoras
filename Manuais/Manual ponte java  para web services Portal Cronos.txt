@@ -1,12 +1,12 @@
 Ponte Java
 ==========
 
-A ponte Java neste projeto é um complemento para sistemasque usam linguagens de programação incompletas 
+A ponte Java neste projeto é um complemento para sistemas que usam linguagens de programação incompletas 
 que não conseguem fazer upload de arquivos, como por exemplo o Datasul que usa a linguagem POSTGRE.
 
 
 
-carlos.etsouza@gmail.com
+
 
 
 A. Uso da ponte sem MS-DOS:
@@ -14,8 +14,9 @@ A. Uso da ponte sem MS-DOS:
 
 Carlos Eduardo, boa tarde!
  
-  a "ponte" Java está disponível. Já testei esta ponte agorinha e funcionou. para evitar bloqueio de anexos de arquivos .jar por providores de email,
-a ponte está disponível para download no link http://52.170.47.238/ponte-integracao-pcronos-1.0.0.jar
+  a "ponte" Java está disponível. Já testei esta ponte agorinha e funcionou. 
+Para evitar bloqueio de anexos de arquivos .jar por providores de email,
+a ponte está disponível para download no link http://52.170.47.238/ponte-integracao-pcronos-2.1.1.jar
  
 É só chamar o método "uploadStringXML" na classe "PonteWebServicesPortalCronos"  na package "pcronos.integracao.comprador".
 Parâmetros: String url, String stringXML, String usuario, String senha, Boolean toDebugar.
@@ -26,26 +27,20 @@ Este método retorna um objeto de tipo pcronos.integracao.comprador.RetornoWebSer
     apenas repassando o retorno do web service, veja o manual de Integração; 
  
 Observações: 
-1. A versão atual da ponte não chame o método "main".
+1. A versão atual da ponte não chama o método "main".
  
-2. A ponte mesma cria os 2 tipos de arquivos de retorno fisicamente se não existir arquivos com estes nomes.
-   O sistema que integra com o Portal Cronos apenas deve passar os NOMES dos arquivos de retorno e após a chamada da ponte 
-   fazer a leitura destes mesmos arquivos de retorno. 
- 
-3. Os nomes dos arquivos de retorno devem ser diferentes em cada chamada da ponte 
-   para evitar interferência indevida de requisições diferentes.
- 
-4. A ponte faz limpeza automática do subdiretório C:/ProgramData/PortalCronos/PonteJava/ que é um subdiretório 
+2. A ponte faz limpeza automática do subdiretório C:/ProgramData/PortalCronos/PonteJava/ que é um subdiretório 
    para uso interno pela ponte. A ponte guarda os arquivos internos 30 dias. 
-   O diretório raiz  C:/ProgramData/PortalCronos/ é para uso pelo sistema que integra com o Portal Cronos. 
-   A ponte não faz limpeza automática deste diretório raiz. 
+   
+3. A ponte foi feita e testada para funcionar até com versões antigas de Java como Java 1.7.
+   Também tem uma versão disponível para Java 1.8 e mais.
  
  
-Espero que vocês já têm uma infra-estrutura pronta, dentro ou fora do Datasul, para executar qualquer método java em qualquer arquivo .jar diferente de métodos "main". 
-Caso contrário, vocês vão ter que criar esta infraestrutura> Se precisar poss ajudar com isso, talvez até conectado via AnyDesk. 
- 
-Então minha dúvida é se vocês já têm uma infraestrutura?
- 
+Espero que vocês já têm uma infra-estrutura pronta, dentro ou fora do Datasul, para executar qualquer método java em qualquer arquivo .jar diferente de métodos "main", 
+pois isso seria o ideal. 
+Caso contrário, a Cronos Technology já tem uma infra-estrutura pronta que usa MS-DOS e um método "main".
+Neste caso pode entrar em contato com a Cronos para obter esta infra-estrutura. 
+  
 Atc,
 Eric
  
@@ -53,20 +48,27 @@ Eric
 B. Uso da ponte com MS-DOS:
 ===========================
 
+REM Navegar para o diretório onde fica a ponte, e de lá executar java.exe:
 cd\
 cd dir1
 cd dir2
-.......
+cd .......
 REM Antigo - com diretórios flexíveis:
-REM "%JAVA_HOME%\bin\java.exe"   -cp  ponte-integracao-pcronos-2.1.0.jar  pcronos.integracao.comprador.PonteWebServicesPortalCronos  "url"   usuario  senha  "dirMaisNomeArqUploadXML"   "dirMaisNomeArqRetornoXML"   "dirMaisNomeArqRetornoStatusCodeHTTP"  toDebugar
+REM "%JAVA_HOME%\bin\java.exe"   -cp  ponte-integracao-pcronos-2.1.1.jar  pcronos.integracao.comprador.PonteWebServicesPortalCronos  "url"   usuario  senha  "dirMaisNomeArqUploadXML"   "dirMaisNomeArqRetornoXML"   "dirMaisNomeArqRetornoStatusCodeHTTP"  toDebugar
  
 REM Versão atual - com um único diretório fixo:
-"%JAVA_HOME%\bin\java.exe"  -cp  ponte-integracao-pcronos-2.1.0.jar  pcronos.integracao.comprador.PonteWebServicesPortalCronos  "url"   usuario  senha  NomeArqUploadXML   NomeArqRetornoXML   ArqRetornoStatusCodeHTTP  toDebugar
+"%JAVA_HOME%\bin\java.exe"  -cp  ponte-integracao-pcronos-2.1.1.jar  pcronos.integracao.comprador.PonteWebServicesPortalCronos  "url"   usuario  senha  NomeArqUploadXML   NomeArqRetornoXML   ArqRetornoStatusCodeHTTP  toDebugar
 
 
 Exemplo:
 --------
-"%JAVA_HOME%\bin\java.exe"  -cp  ponte-integracao-pcronos-2.1.0.jar  pcronos.integracao.comprador.PonteWebServicesPortalCronos "http://www.portalcronos.com.br:81/v2/api/Requisicao/PostFileRequisicao" ws-sjcc 123456 req_10798130000175_243680_20200724_145856.xml Ret_10798130000175_243680_20200724_145856.xml Status_10798130000175_243680_20200724_145856.txt false
+REM Navegar para o diretório onde fica a ponte, e de lá executar java.exe:
+cd\
+cd dir1
+cd dir2
+cd .......
+
+"%JAVA_HOME%\bin\java.exe"  -cp  ponte-integracao-pcronos-2.1.1.jar  pcronos.integracao.comprador.PonteWebServicesPortalCronos "http://www.portalcronos.com.br:81/v2/api/Requisicao/PostFileRequisicao" ws-sjcc 123456 req_10798130000175_243680_20200724_145856.xml Ret_10798130000175_243680_20200724_145856.xml Status_10798130000175_243680_20200724_145856.txt false
 REM Descomentar o seguinte para testar ou debugar os arquivos de retorno:
 REM echo.
 REM type C:\ProgramData\PortalCronos\Ret_10798130000175_243680_20200724_145856.xml
@@ -101,6 +103,17 @@ Observações:
    
 8. O parâmetro "toDebugar" (true/false/-) é opcional, com default = false. Os demais parâmetros são obrigatórios. 
    
+9. A ponte foi feita e testada para funcionar até com versões antigas de Java como Java 1.7.
+   Também tem uma versão disponível para Java 1.8 e mais.
+ 
+10. Java pode receber parâmetros de qualquer tamanho e não tem nenhum limite para a quantidade de caracteres, 
+    porém não seria uma boa ideia substituir o uso de aquivos no parâmetro "NomeArqRetornoXML" 
+    passando um string de XML direto para a ponte, pois MS-DOS tem um limite de 2048 ou 8191 caracteres 
+    para linhas de comando DOS, dependendo da versão de Windows. 
+    Além disso, o uso de arquivos evita problemas com aspas, aspas duplas, espaços em branco e barras / e \
+    e com "escape characters". 
+    Não existe nenhuma configuração ou comando DOS para aumentar este limite. 
+     
    
 (  ) Enviar ainda para Carlos da Datasul:
  

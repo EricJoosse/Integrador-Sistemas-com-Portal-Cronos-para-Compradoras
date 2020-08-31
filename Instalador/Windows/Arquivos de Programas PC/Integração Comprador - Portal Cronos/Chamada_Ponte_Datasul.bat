@@ -1,3 +1,4 @@
+REM Navegar para o diretório onde fica a ponte, e de lá executar java.exe:
 D:
 cd\
 cd totvs

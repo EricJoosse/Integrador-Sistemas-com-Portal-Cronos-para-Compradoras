@@ -3,38 +3,21 @@
     
 2. Colocar o aquivo zippado no raiz do site 52.170.47.238, porta 80
  
-3. Email: 
+3. Enviar um email parecido como o seguinte: 
 
 Carlos,
   
-    coloquei uma versão nova 2.1.1 da ponte java no link http://52.170.47.238/PonteJavaIntegraçãoPCronos.2.1.1.zip, 
+    coloquei a versão nova 2.1.1 da ponte java no link http://52.170.47.238/PonteJavaIntegraçãoPCronos.2.1.1.zip, 
 feita com a mesma versão antiga 1.7 de Java que o JBoss da TOTVS usa. 
- 
-Esta versão da ponte vem com mais diversos outros arquivos .jar. 
-Favor descompactar estes arquivos .jar mantendo a mesma estrutura de subdiretórios que têm dentro do arquivo zippado. 
- 
-Agora a grande dúvida vai ser se a ponte java vai funcionar com esta versão bem antiga de Java. 
-Caso contrário, teremos que instalar a versão mais nova Java 1.8.92 no servidor da JC em paralelo com a versão antiga 1.7, 
-sem quebrar o JBoss, e sem interferência, 
- 
-Eric
- 
-
- 
- OU:
- 
- 
-Carlos,
-  
-    coloquei uma versão nova da ponte java no link http://52.170.47.238/PonteJavaIntegraçãoPCronos.2.1.1.zip, 
-que foi alterada para ficar usando o diretório C:/ProgramData/PortalCronos/ fixo na ponte java. 
  
 Favor descompactar este arquivo .zip mantendo a mesma estrutura de subdiretórios que têm dentro deste arquivo zippado.
 Isso quer dizer: copiar o arquivo zippado da ponte nova para o diretório onde a ponte antiga já estava
 (D:\totvs\projetos-datasul11\ccp001\Includes\), e apagar a ponte antiga lá e descompactar o novo arquivo zip lá. 
+
+Observação:
+NÂO coloque a ponte java nem as libs no diretório do próprio java. Este diretório é um diretório reservado apenas para a instalação de java.
  
 Favor confirmar esta atualização no seu servidor. 
-Em seguida vou enviar um manualzinho como instalar a versão 1.8 de java ao lado da sua versão antiga 1.7, sem prejudicar o JBoss,
  
 Atc,  
 Eric
