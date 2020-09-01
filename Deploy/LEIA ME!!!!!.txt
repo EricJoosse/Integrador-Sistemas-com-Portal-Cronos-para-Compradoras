@@ -1,3 +1,6 @@
+Manual upgrades versões novas da ponte Java
+===========================================
+
 1. Compactar o conteúdo do diretório /Deploy/ exceto este LEIA ME!!!!.txt
    para o arquivo "PonteJavaIntegraçãoPCronos.2.1.1.zip" sem espaços no nome do arquivo.
     
@@ -12,10 +15,10 @@ feita com a mesma versão antiga 1.7 de Java que o JBoss da TOTVS usa.
  
 Favor descompactar este arquivo .zip mantendo a mesma estrutura de subdiretórios que têm dentro deste arquivo zippado.
 Isso quer dizer: copiar o arquivo zippado da ponte nova para o diretório onde a ponte antiga já estava
-(D:\totvs\projetos-datasul11\ccp001\Includes\), e apagar a ponte antiga lá e descompactar o novo arquivo zip lá. 
+(D:\totvs\projetos-datasul11\ccp001\Includes\), e apagar a ponte antiga lá e descompactar o novo arquivo zip estando neste diretório. 
 
 Observação:
-NÂO coloque a ponte java nem as libs no diretório do próprio java. Este diretório é um diretório reservado apenas para a instalação de java.
+NÂO coloque a ponte Java nem as libs no diretório do próprio Java. Este diretório é um diretório reservado apenas para a instalação de Java.
  
 Favor confirmar esta atualização no seu servidor. 
  

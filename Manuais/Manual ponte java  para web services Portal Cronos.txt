@@ -1,16 +1,28 @@
-Ponte Java
-==========
+Manual instalação e uso da Ponte Java
+=====================================
 
 A ponte Java neste projeto é um complemento para sistemas que usam linguagens de programação incompletas 
 que não conseguem fazer upload de arquivos, como por exemplo o Datasul que usa a linguagem POSTGRE.
 
 
+A. Instalação:
+==============
+
+A ponte Java se encontra no link http://52.170.47.238/PonteJavaIntegraçãoPCronos.2.1.1.zip, 
+feita com a mesma versão antiga 1.7 de Java que o JBoss da TOTVS usa. 
+ 
+Favor descompactar este arquivo .zip mantendo a mesma estrutura de subdiretórios que têm dentro deste arquivo zippado.
+Isso quer dizer: copiar o arquivo zippado da ponte nova para o diretório onde a ponte deve ficar 
+(D:\totvs\projetos-datasul11\ccp001\Includes\ nos servidores do Datasul), e descompactar o arquivo zip estando neste diretório. 
+
+Observação:
+NÂO coloque a ponte Java nem as libs no diretório do próprio Java. Este diretório é um diretório reservado apenas para a instalação de Java.
+ 
 
 
 
-
-A. Uso da ponte sem MS-DOS:
-===========================
+B.1. Uso da ponte sem MS-DOS:
+=============================
 
 Carlos Eduardo, boa tarde!
  
@@ -45,8 +57,8 @@ Atc,
 Eric
  
  
-B. Uso da ponte com MS-DOS:
-===========================
+B.2. Uso da ponte com MS-DOS:
+=============================
 
 REM Navegar para o diretório onde fica a ponte, e de lá executar java.exe:
 cd\
