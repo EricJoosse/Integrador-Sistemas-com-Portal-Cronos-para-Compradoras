@@ -18,6 +18,9 @@ REM echo.
 type C:\ProgramData\PortalCronos\Ret_10798130000175_243680_20200724_145856.xml
 type C:\ProgramData\PortalCronos\Status_10798130000175_243680_20200724_145856.txt
 
+   (iii) Adicionar antes dos "cd"´s:
+   
+REM Navegar para o diretório onde fica a ponte, e de lá executar java.exe:
 
 3. No servidor do comprador, apagar o subdiretório antigo C:\ProgramData\PortalCronos\XML\
    e possíveis outros subdiretórios antigos como por exemplo C:\ProgramData\PortalCronos\Upload\
