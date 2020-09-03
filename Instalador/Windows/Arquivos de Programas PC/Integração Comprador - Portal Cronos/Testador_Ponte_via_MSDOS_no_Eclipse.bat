@@ -22,6 +22,7 @@ if not exist C:/PCronos/"Integração Comprador - Portal Cronos"/Instalador/Window
     del %temp%\TEMPmessage.vbs /f /q
     exit
 ) else (
+REM Navegar para o diretório onde fica a ponte, e de lá executar java.exe:
   cd\
   cd "PCronos"
   cd "Integração Comprador - Portal Cronos"
@@ -29,7 +30,7 @@ if not exist C:/PCronos/"Integração Comprador - Portal Cronos"/Instalador/Window
 )
 
 REM Antigo - com diretórios flexíveis:
-REM "%JAVA_HOME%\bin\java -cp ponte-integracao-pcronos-2.1.1.jar pcronos.integracao.comprador.PonteWebServicesPortalCronos 'www.portalcronos.com.br:81\\v2\\api\\Requisicao\\PostFileRequisicao' ws-sjcc 123456 'c:\\temp\\req_10798130000175_243680_20200724_145856.xml' 'c:\\temp\\Ret_10798130000175_243680_20200724_145856.xml' 'c:\\temp\\Status_10798130000175_243680_20200724_145856.txt' true
+REM "%JAVA_HOME%\bin\java -cp ponte-integracao-pcronos-2.1.1.jar pcronos.integracao.comprador.PonteWebServicesPortalCronos 'http:\\\\www.portalcronos.com.br:81\\v2\\api\\Requisicao\\PostFileRequisicao' ws-sjcc 123456 'c:\\temp\\req_10798130000175_243680_20200724_145856.xml' 'c:\\temp\\Ret_10798130000175_243680_20200724_145856.xml' 'c:\\temp\\Status_10798130000175_243680_20200724_145856.txt' true
 
 
 REM Versão atual - com único diretório fixo:

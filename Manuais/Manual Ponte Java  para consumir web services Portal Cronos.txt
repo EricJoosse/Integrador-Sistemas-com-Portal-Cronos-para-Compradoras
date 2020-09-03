@@ -41,7 +41,11 @@ Este método retorna um objeto de tipo pcronos.integracao.comprador.RetornoWebSer
 Observações: 
 1. A versão atual da ponte não chama o método "main".
  
-2. A ponte faz limpeza automática do subdiretório C:/ProgramData/PortalCronos/PonteJava/ que é um subdiretório 
+2. A ponte Java é independente do web service do Portal Cronos e pode ser usado
+    para upload de qualquer arquivo XML para qualquer web service do Portal Cronos
+    como por exemplo "PostFileRequisicao", "PostFileRecebimentoOrdemCompra", "PostFileSituacaoOrdemCompra", etc.
+ 
+3. A ponte faz limpeza automática do subdiretório C:/ProgramData/PortalCronos/PonteJava/ que é um subdiretório 
    para uso interno pela ponte. A ponte guarda os arquivos internos 30 dias. 
    
 3. A ponte foi feita e testada para funcionar até com versões antigas de Java como Java 1.7.
@@ -91,7 +95,7 @@ Observações:
 ------------
 1. O parâmetro "url" deve ser passado com aspas duplas, veja o exemplo acima;
  
-2. Dentro do parâmetro "url" é melhor usar os caracteres /  e não \ para não precisar de "escape characters".
+2. Dentro do parâmetro "url" é melhor usar os caracteres "/"  e não os caracteres "\" para evitar a necessidade de usar "escape characters".
  
 3. A ponte Java é independente do web service do Portal Cronos e pode ser usado
     para upload de qualquer arquivo XML para qualquer web service do Portal Cronos
@@ -99,7 +103,7 @@ Observações:
  
 4. Na versão atual da ponte o diretório para os 3 tipos de arquivos é um diretório único e um diretório fixo no programa. 
    O diretório fixo é C:/ProgramData/PortalCronos/ e não é C:/temp/ para evitar prejuizos graves e até paradas impeditivas 
-   da integração no futuro.
+   da integração no futuro. O diretório "C:/ProgramData/" é o diretório padrão Microsoft para arquivos temporários de programas. 
    
 5. A ponte mesma cria os 2 tipos de arquivos de retorno fisicamente se não existir arquivos com estes nomes.
    O sistema que integra com o Portal Cronos apenas deve passar os NOMES dos arquivos de retorno e após a chamada da ponte 
@@ -143,4 +147,12 @@ Caso contrário, eu mesmo posso fazer isso dentro da ponte, eu faria isso em 5 mi
 Eric
  
   
+C. No caso de outra versão de Java diferente de 1.7 ou 1.8:
+===========================================================
+
+Testar se a ponte Java dá para ser adpatada para outra versão de Java.
+Caso contrário, teremos que instalar a versão mais nova Java 1.8.92 no servidor da JC em paralelo com a versão antiga 1.7,
+sem quebrar o JBoss, e sem interferência. Neste caso vou escrever um manualzinho para você fazer isso, sem prejudicar o JBoss,
+ 
+Eric 
      

@@ -20,6 +20,7 @@ REM "chcp 1252>nul" é necessário para evitar que DOS não reconhece acentos Portu
 REM "Integração Fornecedor - Portal Cronos" em alguns ou talvez até em todos os servidores:
 chcp 1252>nul
 
+REM Navegar para o diretório onde fica a ponte, e de lá executar java.exe:
 cd\
 cd "Arquivos de Programas PC"
 cd "Integração Comprador - Portal Cronos"
