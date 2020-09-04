@@ -31,35 +31,50 @@ Para evitar bloqueio de anexos de arquivos .jar por providores de email,
 a ponte está disponível para download no link http://52.170.47.238/ponte-integracao-pcronos-2.1.1.jar
  
 É só chamar o método "uploadStringXML" na classe "PonteWebServicesPortalCronos"  na package "pcronos.integracao.comprador".
-Parâmetros: String url, String stringXML, String usuario, String senha, Boolean toDebugar.
+Parâmetros: 
+	- String url, 
+	- String stringXML, 
+	- String usuario, 
+	- String senha, 
+	- Boolean toDebugar.
 O parâmetro "toDebugar" (true/false/-) é opcional, com default = false. Os demais parâmetros são obrigatórios. 
+ 
 Este método retorna um objeto de tipo pcronos.integracao.comprador.RetornoWebServiceDTO com os seguintes campos:
   - String StatusCodeHTTP: pode ser 200, 202, ....., veja o manual de Integração
   - String MensagensXML: string XML com a lista de eventuais erros que pode estar vazio, 
-    apenas repassando o retorno do web service, veja o manual de Integração; 
+Este objeto está apenas repassando o retorno do web service, veja o manual de Integração; 
  
 Observações: 
-1. A versão atual da ponte não chama o método "main".
- 
-2. A ponte Java é independente do web service do Portal Cronos e pode ser usado
+1. A ponte Java é independente do web service do Portal Cronos e pode ser usada
     para upload de qualquer arquivo XML para qualquer web service do Portal Cronos
     como por exemplo "PostFileRequisicao", "PostFileRecebimentoOrdemCompra", "PostFileSituacaoOrdemCompra", etc.
  
-3. A ponte faz limpeza automática do subdiretório C:/ProgramData/PortalCronos/PonteJava/ que é um subdiretório 
+2. A ponte faz limpeza automática do subdiretório C:/ProgramData/PortalCronos/PonteJava/ que é um subdiretório 
    para uso interno pela ponte. A ponte guarda os arquivos internos 30 dias. 
    
 3. A ponte foi feita e testada para funcionar até com versões antigas de Java como Java 1.7.
    Também tem uma versão disponível para Java 1.8 e mais.
  
  
-Espero que vocês já têm uma infra-estrutura pronta, dentro ou fora do Datasul, para executar qualquer método java em qualquer arquivo .jar diferente de métodos "main", 
-pois isso seria o ideal. 
-Caso contrário, a Cronos Technology já tem uma infra-estrutura pronta que usa MS-DOS e um método "main".
-Neste caso pode entrar em contato com a Cronos para obter esta infra-estrutura. 
-  
-Atc,
-Eric
+Espero que vocês já têm uma infra-estrutura pronta, dentro ou fora do Datasul, 
+para executar métodos Java em arquivos .jar (diferente de métodos "main"), 
+pois isso seria o ideal:
  
+Opções:
+------- 
+1. Talvez você pode baixar algum plugin da Internet e instalar o plugin
+   no Datasul para executar métodos java em arquivos .jar?
+ 
+2. Ou talvez você pode passar o string XML por fora da chamada de MSDOS via arquivos intermediários
+   ou via tabelas intermediários ou via bibliotecas de terceiros como por exemplo Groovy ou Beanshell
+   (eu mesmo nunca usei estas bibliotecas ainda então não tenho exemplos disso)
+
+3. Caso contrário, como última opção, menos ideal, a Cronos Technology já tem uma infra-estrutura pronta 
+   que usa MS-DOS e um método "main". 
+   Neste último caso veja a opção B.2 abaixo. 
+  
+Então minha dúvida é se vocês já têm uma infraestrutura que não usa MS-DOS?
+
  
 B.2. Uso da ponte com MS-DOS:
 =============================
@@ -97,7 +112,7 @@ Observações:
  
 2. Dentro do parâmetro "url" é melhor usar os caracteres "/"  e não os caracteres "\" para evitar a necessidade de usar "escape characters".
  
-3. A ponte Java é independente do web service do Portal Cronos e pode ser usado
+3. A ponte Java é independente do web service do Portal Cronos e pode ser usada
     para upload de qualquer arquivo XML para qualquer web service do Portal Cronos
     como por exemplo "PostFileRequisicao", "PostFileRecebimentoOrdemCompra", "PostFileSituacaoOrdemCompra", etc.
  
@@ -123,13 +138,16 @@ Observações:
    Também tem uma versão disponível para Java 1.8 e mais.
  
 10. Java pode receber parâmetros de qualquer tamanho e não tem nenhum limite para a quantidade de caracteres, 
-    porém não seria uma boa ideia substituir o uso de aquivos no parâmetro "NomeArqRetornoXML" 
-    passando um string de XML direto para a ponte, pois MS-DOS tem um limite de 2048 ou 8191 caracteres 
-    para linhas de comando DOS, dependendo da versão de Windows. 
+    porém não seria uma boa ideia substituir o uso de arquivos no parâmetro "NomeArqRetornoXML" 
+    por outro parâmetro "stringXML" passando um string XML direto para a ponte, 
+    pois MS-DOS tem um limite de 2048 ou 8191 caracteres para linhas de comando DOS, dependendo da versão de Windows. 
     Além disso, o uso de arquivos evita problemas com aspas, aspas duplas, espaços em branco e barras / e \
-    e com "escape characters". 
-    Não existe nenhuma configuração ou comando DOS para aumentar este limite. 
+    e evita a necessidade do uso de "escape characters" '\' antes de cada aspa ou aspa dupla e barra. 
+    Pelo menos nas versões de MS-DOS até 2020 não existe nenhuma configuração ou comando DOS para aumentar este limite de 2048 ou 8191 caracteres. 
      
+Atc,
+Eric
+
    
 (  ) Enviar ainda para Carlos da Datasul:
  
@@ -144,6 +162,7 @@ Dúvida:
 O seu programa faz esta limpeza automática dos arquivos que o Datasul gera? 
 Caso contrário, eu mesmo posso fazer isso dentro da ponte, eu faria isso em 5 minutos com apenas uma linha de programação Java. 
  
+Atc,
 Eric
  
   
