@@ -2,7 +2,7 @@ Manual upgrades versões novas da ponte Java
 ===========================================
 
 1. Compactar o conteúdo do diretório /Deploy/ exceto este LEIA ME!!!!.txt
-   para o arquivo "PonteJavaIntegraçãoPCronos.2.1.1.zip" sem espaços no nome do arquivo.
+   para o arquivo "Ponte_Java_Integração_PCronos_v2.1.1.zip" sem espaços no nome do arquivo.
     
 2. Colocar o aquivo zippado no raiz do site 52.170.47.238, porta 80
  
@@ -10,7 +10,7 @@ Manual upgrades versões novas da ponte Java
 
 Carlos,
   
-    coloquei a versão nova 2.1.1 da ponte java no link http://52.170.47.238/PonteJavaIntegraçãoPCronos.2.1.1.zip, 
+    coloquei a versão nova 2.1.1 da ponte java no link http://52.170.47.238/Ponte_Java_Integração_PCronos_v2.1.1.zip, 
 feita com a mesma versão antiga 1.7 de Java que o JBoss da TOTVS usa. 
  
 Favor descompactar este arquivo .zip mantendo a mesma estrutura de subdiretórios que têm dentro deste arquivo zippado.

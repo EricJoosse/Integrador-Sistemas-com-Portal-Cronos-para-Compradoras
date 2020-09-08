@@ -1,6 +1,8 @@
-Manual instalação e uso da Ponte Java
-=====================================
+Manual instalação e uso da Ponte Java para consumir web services do Portal Cronos
+=================================================================================
 
+Objetivo:
+=========
 A ponte Java neste projeto é um complemento para sistemas que usam linguagens de programação incompletas 
 que não conseguem fazer upload de arquivos, como por exemplo o Datasul que usa a linguagem POSTGRE.
 
@@ -8,28 +10,22 @@ que não conseguem fazer upload de arquivos, como por exemplo o Datasul que usa a
 A. Instalação:
 ==============
 
-A ponte Java se encontra no link http://52.170.47.238/PonteJavaIntegraçãoPCronos.2.1.1.zip, 
-feita com a mesma versão antiga 1.7 de Java que o JBoss da TOTVS usa. 
+Para evitar bloqueio de anexos de arquivos com extensão .jar por provedores de email,
+a ponte Java está disponível para download no link http://52.170.47.238/Ponte_Java_Integração_PCronos_v2.1.1.zip. 
  
-Favor descompactar este arquivo .zip mantendo a mesma estrutura de subdiretórios que têm dentro deste arquivo zippado.
-Isso quer dizer: copiar o arquivo zippado da ponte nova para o diretório onde a ponte deve ficar 
-(D:\totvs\projetos-datasul11\ccp001\Includes\ nos servidores do Datasul), e descompactar o arquivo zip estando neste diretório. 
+Este arquivo .zip deve ser descompactado mantendo a mesma estrutura de subdiretórios que têm dentro deste arquivo zippado.
+Isso quer dizer: copiar o arquivo zippado da ponte nova para o diretório onde a ponte deve ficar, 
+e descompactar o arquivo zip estando neste diretório. 
 
 Observação:
-NÂO coloque a ponte Java nem as libs no diretório do próprio Java. Este diretório é um diretório reservado apenas para a instalação de Java.
+NÂO coloque a ponte Java nem as libs no diretório do próprio Java. 
+Este diretório é um diretório reservado apenas para a instalação de Java.
  
-
 
 
 B.1. Uso da ponte sem MS-DOS:
 =============================
 
-Carlos Eduardo, boa tarde!
- 
-  a "ponte" Java está disponível. Já testei esta ponte agorinha e funcionou. 
-Para evitar bloqueio de anexos de arquivos .jar por providores de email,
-a ponte está disponível para download no link http://52.170.47.238/ponte-integracao-pcronos-2.1.1.jar
- 
 É só chamar o método "uploadStringXML" na classe "PonteWebServicesPortalCronos"  na package "pcronos.integracao.comprador".
 Parâmetros: 
 	- String url, 
@@ -56,24 +52,23 @@ Observações:
    Também tem uma versão disponível para Java 1.8 e mais.
  
  
-Espero que vocês já têm uma infra-estrutura pronta, dentro ou fora do Datasul, 
-para executar métodos Java em arquivos .jar (diferente de métodos "main"), 
-pois isso seria o ideal:
- 
 Opções:
 ------- 
-1. Talvez você pode baixar algum plugin da Internet e instalar o plugin
-   no Datasul para executar métodos java em arquivos .jar?
- 
-2. Ou talvez você pode passar o string XML por fora da chamada de MSDOS via arquivos intermediários
-   ou via tabelas intermediários ou via bibliotecas de terceiros como por exemplo Groovy ou Beanshell
-   (eu mesmo nunca usei estas bibliotecas ainda então não tenho exemplos disso)
+B.1.1. O ideal seria que o sistema a ser integrado com o Portal Cronos já tem uma infra-estrutura pronta, 
+       dentro ou fora do sistema, para executar métodos Java em arquivos .jar, de forma embutida no sistema,
+       diferente de métodos "main";  
 
-3. Caso contrário, como última opção, menos ideal, a Cronos Technology já tem uma infra-estrutura pronta 
-   que usa MS-DOS e um método "main". 
-   Neste último caso veja a opção B.2 abaixo. 
+B.1.2. Caso contrário, talvez você pode baixar algum plugin da Internet e instalar o plugin
+       no Datasul para executar métodos java em arquivos .jar?
+ 
+B.1.3. Ou talvez você pode passar o string XML por fora da chamada da ponte Java via arquivos intermediários, 
+       sem usar MS-DOS, ou via tabelas intermediários ou via bibliotecas de terceiros como por exemplo Groovy ou Beanshell. 
+       Neste caso favor entrar em contato com o setor Desenvolvimento do Protal Cronos para adaptação da ponte Java.
+
+B.1.4. Caso contrário, como última opção (menos ideal) a Cronos Technology já tem uma infra-estrutura pronta 
+       que usa MS-DOS e um método "main", passando o string XML por fora da chamada da ponte Java via arquivos intermediários. 
+       Neste último caso veja a opção B.2 abaixo. 
   
-Então minha dúvida é se vocês já têm uma infraestrutura que não usa MS-DOS?
 
  
 B.2. Uso da ponte com MS-DOS:
@@ -145,33 +140,13 @@ Observações:
     e evita a necessidade do uso de "escape characters" '\' antes de cada aspa ou aspa dupla e barra. 
     Pelo menos nas versões de MS-DOS até 2020 não existe nenhuma configuração ou comando DOS para aumentar este limite de 2048 ou 8191 caracteres. 
      
-Atc,
-Eric
-
-   
-(  ) Enviar ainda para Carlos da Datasul:
- 
-Carlos, bom dia!
-  
-  me esqueci dizer que a ponte faz limpeza automática do subdiretório C:/ProgramData/PortalCronos/PonteJava/ 
-que é um subdiretório para uso interno pela ponte. A ponte guarda os arquivos internos 30 dias. 
-O diretório raiz  C:/ProgramData/PortalCronos/ é para uso pelo sistema que integra com o Portal Cronos. 
-A ponte não faz limpeza automática deste diretório raiz.
- 
-Dúvida: 
-O seu programa faz esta limpeza automática dos arquivos que o Datasul gera? 
-Caso contrário, eu mesmo posso fazer isso dentro da ponte, eu faria isso em 5 minutos com apenas uma linha de programação Java. 
- 
-Atc,
-Eric
- 
   
 C. No caso de outra versão de Java diferente de 1.7 ou 1.8:
 ===========================================================
 
-Testar se a ponte Java dá para ser adpatada para outra versão de Java.
+Testar se a ponte Java dá para ser adaptada para outra versão de Java.
 Caso contrário, teremos que instalar a versão mais nova Java 1.8.92 no servidor da JC em paralelo com a versão antiga 1.7,
 sem quebrar o JBoss, e sem interferência. Neste caso vou escrever um manualzinho para você fazer isso, sem prejudicar o JBoss,
  
-Eric 
+
      
