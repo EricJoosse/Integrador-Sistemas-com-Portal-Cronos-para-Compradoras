@@ -1,0 +1,12 @@
+select c.id_comprador_compr          as IdComprador
+     , c.id_comprador_matriz_compr   as IdCompradorMatriz
+	 , u.cd_usuario_sistema_ususis   as "Usuário"
+	 , pe.nr_cnpj_pessoa             as CNPJ
+     , pe.nm_pessoa                  as "Nome Fantasia"
+  from dbo.Comprador c
+       inner join      dbo.Pessoa          pe on pe.id_pessoa = c.id_pessoa
+	   left outer join dbo.Usuario_Empresa ue on ue.id_comprador_compr = c.id_comprador_compr and ue.id_perfil_acesso_perace = 12
+	   left outer join dbo.Usuario_Sistema u  on u.id_comprador_compr = ue.id_comprador_compr
+ where (c.id_comprador_compr = 781 or c.id_comprador_matriz_compr = 781)
+ order by c.id_comprador_matriz_compr
+

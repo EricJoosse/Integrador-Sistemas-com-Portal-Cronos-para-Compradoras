@@ -1,6 +1,7 @@
-Jornal do Comercio:
+Grupo JC:
 
-- Id_comprador: 664
+
+- Id_comprador: 781 (na base de Producao), 657 na base de Homologação de 08.09.2020
 - Sistema: Datasul
 - Versão ponte java: 2.1.0
 - Em produção: Não
@@ -11,8 +12,26 @@ Jornal do Comercio:
 - Skype: carlos.eduardo.tavares.de.souza
 - Telefone: 081 - 9 9972 5509
 - Prenome: Carlos Eduardo
-- Versão java: 1.7.0_80 (usado por JBoss da TOTVS)
+- Versão java: 1.7.0_80 (usado pelo JBoss da TOTVS)
 - Tipo Java: 64 bit
 - Anydesk 767 826 830
-- Usuário web service: ws-sjcc 
+- Usuário web service: veja abaixo (antigamente ws-sjcc do grupo JC)
 - Senha web service: 123456
+- Diretório instalação da ponte: D:\totvs\projetos-datasul11\ccp001\Includes\
+- Observação: Carlos Eduardo do Datasul confirmou que "O datasul está instalado em um único servidor para todos as empresas do grupo".
+- Empresas do grupo JC (na base de Homologação):
+
+IdComprador		IdCompradorMatriz	Usuário						CNPJ			Nome Fantasia
+-----------		-----------------	-------						----			-------------
+657				NULL				NULL						16099143015911	Sistema Jornal do Commercio de Comunicação
+658				657					ws_graficajc				10798130000256	Gráfica JC
+659				657					ws_tvjornal					09045758000110	Tv Jornal
+660				657					ws_radiojornal_garanhuns	09045758000200	Radio Jornal - Garanhuns
+661				657					ws_radiojornal_caruaru		09045758000382	Radio Jornal - Caruaru
+662				657					ws_radiojornal				09045758000463	Radio Jornal
+663				657					ws_radiojornal_petrolina	09045758000544	Radio Jornal - Petrolina
+664				657					ws_difusora_limoeiro		09045774000103	Difusora - Limoeiro
+665				657					ws_difusora_pesqueira		09045774000294	Difusora - Pesqueira
+666				657					ws_elocomunicacao			02380966000127	Elo Comunicação
+656				657					ws_editorajc				10798130000175	Editora JC
+656				657					leaosjcc					10798130000175	Editora JC
