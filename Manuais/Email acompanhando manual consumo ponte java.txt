@@ -1,5 +1,5 @@
 
-Carlos Eduardo, boa tarde!
+<Carlos Eduardo>, boa tarde!
  
   segue em anexo o manual para instalação e uso da Ponte Java para consumo dos web services do Portal Cronos. 
 Esta ponte já foi bem testada no passado.
@@ -12,18 +12,25 @@ Atc,
 Eric
 
    
-(  ) Enviar ainda para Carlos da Datasul:
+(  ) Aguardando resposta email para Carlos da Datasul:
  
-Carlos, bom dia!
+Carlos, boa tarde!
   
-  me esqueci dizer que a ponte faz limpeza automática do subdiretório C:/ProgramData/PortalCronos/PonteJava/ 
-que é um subdiretório para uso interno pela ponte. A ponte guarda os arquivos internos 30 dias. 
-O diretório raiz  C:/ProgramData/PortalCronos/ é para uso pelo sistema que integra com o Portal Cronos. 
-A ponte não faz limpeza automática deste diretório raiz.
+  me esqueci dizer que na ponte Java sempre já tinha uma opção pronta que faz limpeza automática dos arquivos temporários 
+no diretório C:/ProgramData/PortalCronos/, guardando estes arquivos 30 dias. Esta opção está desativada no momento. 
  
-Dúvida: 
-O seu programa faz esta limpeza automática dos arquivos que o Datasul gera? 
-Caso contrário, eu mesmo posso fazer isso dentro da ponte, eu faria isso em 5 minutos com apenas uma linha de programação Java. 
+Dúvidas: 
+1. Você quer que vou ativar esta opção na ponte? 
+    Ou talvez seu programa já faz limpeza automática dos arquivos temporários que o Datasul gera, ou você mesmo quer fazer isso?
+    
+2. Você concorda com o prazo de 30 dias ou você prefere guardar os arquivos mais ou talvez menos tempo? 
+ 
+3. Você voltará quando da licença médica?
+ 
+Observação: 
+O diretório raiz C:/ProgramData/PortalCronos/ é para uso pelo sistema que integra com o Portal Cronos. 
+O subdiretório C:/ProgramData/PortalCronos/PonteJava/ é um subdiretório para uso interno pela ponte 
+que sempre já tinha limpeza automática ativada. 
  
 Atc,
 Eric

@@ -21,17 +21,17 @@ Grupo JC:
 - Observação: Carlos Eduardo do Datasul confirmou que "O datasul está instalado em um único servidor para todos as empresas do grupo".
 - Empresas do grupo JC (na base de Homologação):
 
-IdComprador		IdCompradorMatriz	Usuário						CNPJ			Nome Fantasia
------------		-----------------	-------						----			-------------
-657				NULL				NULL						16099143015911	Sistema Jornal do Commercio de Comunicação
-658				657					ws_graficajc				10798130000256	Gráfica JC
-659				657					ws_tvjornal					09045758000110	Tv Jornal
-660				657					ws_radiojornal_garanhuns	09045758000200	Radio Jornal - Garanhuns
-661				657					ws_radiojornal_caruaru		09045758000382	Radio Jornal - Caruaru
-662				657					ws_radiojornal				09045758000463	Radio Jornal
-663				657					ws_radiojornal_petrolina	09045758000544	Radio Jornal - Petrolina
-664				657					ws_difusora_limoeiro		09045774000103	Difusora - Limoeiro
-665				657					ws_difusora_pesqueira		09045774000294	Difusora - Pesqueira
-666				657					ws_elocomunicacao			02380966000127	Elo Comunicação
-656				657					ws_editorajc				10798130000175	Editora JC
-656				657					leaosjcc					10798130000175	Editora JC
+IdComprador		IdCompradorMatriz	Usuário						Senha	CNPJ			Nome Fantasia
+-----------		-----------------	-------						-----	----			-------------
+657				NULL				NULL						123456	16099143015911	Sistema Jornal do Commercio de Comunicação
+658				657					ws_graficajc				123456	10798130000256	Gráfica JC
+659				657					ws_tvjornal					123456	09045758000110	Tv Jornal
+660				657					ws_radiojornal_garanhuns	123456	09045758000200	Radio Jornal - Garanhuns
+661				657					ws_radiojornal_caruaru		123456	09045758000382	Radio Jornal - Caruaru
+662				657					ws_radiojornal				123456	09045758000463	Radio Jornal
+663				657					ws_radiojornal_petrolina	123456	09045758000544	Radio Jornal - Petrolina
+664				657					ws_difusora_limoeiro		123456	09045774000103	Difusora - Limoeiro
+665				657					ws_difusora_pesqueira		123456	09045774000294	Difusora - Pesqueira
+666				657					ws_elocomunicacao			123456	02380966000127	Elo Comunicação
+656				657					ws_editorajc				123456	10798130000175	Editora JC
+656				657					leaosjcc					123456	10798130000175	Editora JC

@@ -38,7 +38,7 @@ O parâmetro "toDebugar" (true/false/-) é opcional, com default = false. Os demai
 Este método retorna um objeto de tipo pcronos.integracao.comprador.RetornoWebServiceDTO com os seguintes campos:
   - String StatusCodeHTTP: pode ser 200, 202, ....., veja o manual de Integração
   - String MensagensXML: string XML com a lista de eventuais erros que pode estar vazio, 
-Este objeto está apenas repassando o retorno do web service, veja o manual de Integração; 
+Este objeto está apenas repassando o retorno do web service, veja o manual de Integração. 
  
 Observações: 
 1. A ponte Java é independente do web service do Portal Cronos e pode ser usada
@@ -49,23 +49,23 @@ Observações:
    para uso interno pela ponte. A ponte guarda os arquivos internos 30 dias. 
    
 3. A ponte foi feita e testada para funcionar até com versões antigas de Java como Java 1.7.
-   Também tem uma versão disponível para Java 1.8 e mais.
+   Também tem outra versão mais moderna da ponte disponível para Java 1.8 e maior.
  
  
 Opções:
 ------- 
-B.1.1. O ideal seria que o sistema a ser integrado com o Portal Cronos já tem uma infra-estrutura pronta, 
+B.1.1. O ideal seria que o sistema a ser integrado com o Portal Cronos já teria uma infra-estrutura pronta, 
        dentro ou fora do sistema, para executar métodos Java em arquivos .jar, de forma embutida no sistema,
-       diferente de métodos "main";  
+       sem precisarr do método "main" da ponte.  
 
 B.1.2. Caso contrário, talvez você pode baixar algum plugin da Internet e instalar o plugin
-       no Datasul para executar métodos java em arquivos .jar?
+       no Datasul para executar métodos java externos?
  
 B.1.3. Ou talvez você pode passar o string XML por fora da chamada da ponte Java via arquivos intermediários, 
        sem usar MS-DOS, ou via tabelas intermediários ou via bibliotecas de terceiros como por exemplo Groovy ou Beanshell. 
-       Neste caso favor entrar em contato com o setor Desenvolvimento do Protal Cronos para adaptação da ponte Java.
+       Neste caso favor entrar em contato com o setor Desenvolvimento do Portal Cronos para adaptação da ponte Java.
 
-B.1.4. Caso contrário, como última opção (menos ideal) a Cronos Technology já tem uma infra-estrutura pronta 
+B.1.4. Caso contrário, como última opção (menos ideal), a Cronos Technology já tem uma infra-estrutura pronta 
        que usa MS-DOS e um método "main", passando o string XML por fora da chamada da ponte Java via arquivos intermediários. 
        Neste último caso veja a opção B.2 abaixo. 
   
@@ -74,6 +74,8 @@ B.1.4. Caso contrário, como última opção (menos ideal) a Cronos Technology já te
 B.2. Uso da ponte com MS-DOS:
 =============================
 
+Criar um arquivo .bat com o seguinte conteúdo:
+ 
 REM Navegar para o diretório onde fica a ponte, e de lá executar java.exe:
 cd\
 cd dir1
@@ -85,6 +87,11 @@ REM "%JAVA_HOME%\bin\java.exe"   -cp  ponte-integracao-pcronos-2.1.1.jar  pcrono
 REM Versão atual - com um único diretório fixo:
 "%JAVA_HOME%\bin\java.exe"  -cp  ponte-integracao-pcronos-2.1.1.jar  pcronos.integracao.comprador.PonteWebServicesPortalCronos  "url"   usuario  senha  NomeArqUploadXML   NomeArqRetornoXML   ArqRetornoStatusCodeHTTP  toDebugar
 
+REM Descomentar o seguinte para testar ou debugar os arquivos de retorno:
+REM echo.
+REM type C:\ProgramData\PortalCronos\<NomeArqRetornoXML>
+REM type C:\ProgramData\PortalCronos\<ArqRetornoStatusCodeHTTP>
+
 
 Exemplo:
 --------
@@ -95,6 +102,7 @@ cd dir2
 cd .......
 
 "%JAVA_HOME%\bin\java.exe"  -cp  ponte-integracao-pcronos-2.1.1.jar  pcronos.integracao.comprador.PonteWebServicesPortalCronos "http://www.portalcronos.com.br:81/v2/api/Requisicao/PostFileRequisicao" ws-sjcc 123456 req_10798130000175_243680_20200724_145856.xml Ret_10798130000175_243680_20200724_145856.xml Status_10798130000175_243680_20200724_145856.txt false
+
 REM Descomentar o seguinte para testar ou debugar os arquivos de retorno:
 REM echo.
 REM type C:\ProgramData\PortalCronos\Ret_10798130000175_243680_20200724_145856.xml
@@ -107,30 +115,30 @@ Observações:
  
 2. Dentro do parâmetro "url" é melhor usar os caracteres "/"  e não os caracteres "\" para evitar a necessidade de usar "escape characters".
  
-3. A ponte Java é independente do web service do Portal Cronos e pode ser usada
+3. O parâmetro "toDebugar" (true/false/-) é opcional, com default = false. Os demais parâmetros são obrigatórios. 
+   
+4. A ponte Java é independente do web service do Portal Cronos e pode ser usada
     para upload de qualquer arquivo XML para qualquer web service do Portal Cronos
     como por exemplo "PostFileRequisicao", "PostFileRecebimentoOrdemCompra", "PostFileSituacaoOrdemCompra", etc.
  
-4. Na versão atual da ponte o diretório para os 3 tipos de arquivos é um diretório único e um diretório fixo no programa. 
+5. Na versão atual da ponte o diretório para os 3 tipos de arquivos é um diretório único e um diretório fixo no programa. 
    O diretório fixo é C:/ProgramData/PortalCronos/ e não é C:/temp/ para evitar prejuizos graves e até paradas impeditivas 
    da integração no futuro. O diretório "C:/ProgramData/" é o diretório padrão Microsoft para arquivos temporários de programas. 
    
-5. A ponte mesma cria os 2 tipos de arquivos de retorno fisicamente se não existir arquivos com estes nomes.
+6. A ponte mesma cria os 2 tipos de arquivos de retorno fisicamente se não existir arquivos com estes nomes.
    O sistema que integra com o Portal Cronos apenas deve passar os NOMES dos arquivos de retorno e após a chamada da ponte 
    fazer a leitura destes mesmos arquivos de retorno. 
  
-6. Os nomes dos arquivos de retorno devem ser diferentes em cada chamada da ponte 
-   para evitar interferência indevida de requisições diferentes.
+7. Os nomes dos arquivos de retorno devem ser diferentes em cada chamada da ponte 
+   para impossibilitar interferência indevida de requisições diferentes.
  
-7. A ponte faz limpeza automática do subdiretório C:/ProgramData/PortalCronos/PonteJava/ que é um subdiretório 
+8. A ponte faz limpeza automática do subdiretório C:/ProgramData/PortalCronos/PonteJava/ que é um subdiretório 
    para uso interno pela ponte. A ponte guarda os arquivos internos 30 dias. 
    O diretório raiz  C:/ProgramData/PortalCronos/ é para uso pelo sistema que integra com o Portal Cronos. 
    A ponte não faz limpeza automática deste diretório raiz. 
    
-8. O parâmetro "toDebugar" (true/false/-) é opcional, com default = false. Os demais parâmetros são obrigatórios. 
-   
 9. A ponte foi feita e testada para funcionar até com versões antigas de Java como Java 1.7.
-   Também tem uma versão disponível para Java 1.8 e mais.
+   Também tem outra versão mais moderna da ponte disponível para Java 1.8 e maior.
  
 10. Java pode receber parâmetros de qualquer tamanho e não tem nenhum limite para a quantidade de caracteres, 
     porém não seria uma boa ideia substituir o uso de arquivos no parâmetro "NomeArqRetornoXML" 
@@ -138,15 +146,18 @@ Observações:
     pois MS-DOS tem um limite de 2048 ou 8191 caracteres para linhas de comando DOS, dependendo da versão de Windows. 
     Além disso, o uso de arquivos evita problemas com aspas, aspas duplas, espaços em branco e barras / e \
     e evita a necessidade do uso de "escape characters" '\' antes de cada aspa ou aspa dupla e barra. 
-    Pelo menos nas versões de MS-DOS até 2020 não existe nenhuma configuração ou comando DOS para aumentar este limite de 2048 ou 8191 caracteres. 
+    Pelo menos nas versões de MS-DOS até 2020 não existe nenhuma configuração ou comando DOS para aumentar 
+    este limite de 2048 ou 8191 caracteres. 
      
   
 C. No caso de outra versão de Java diferente de 1.7 ou 1.8:
 ===========================================================
 
-Testar se a ponte Java dá para ser adaptada para outra versão de Java.
-Caso contrário, teremos que instalar a versão mais nova Java 1.8.92 no servidor da JC em paralelo com a versão antiga 1.7,
-sem quebrar o JBoss, e sem interferência. Neste caso vou escrever um manualzinho para você fazer isso, sem prejudicar o JBoss,
- 
+Em caso de erros, favor entrar em contato com o setor Desenvolvimento do Portal Cronos para ver se a ponte Java 
+dá para ser adaptada para outra versão de Java.
+Caso contrário, como última opção, teremos que instalar a versão homologada Java 1.8.92 no servidor 
+em paralelo com a versão antiga 1.7, sem quebrar nem prejudicar nenhum sistema já existente no servidor, 
+e sem nenhuma interferência. 
+Neste caso o setor Desenvolvimento do Portal Cronos poderá escrever um manualzinho como fazer isso exatamente. 
 
      
