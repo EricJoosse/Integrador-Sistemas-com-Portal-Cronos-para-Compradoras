@@ -34,5 +34,9 @@ REM Navegar para o diretório onde fica a ponte, e de lá executar java.exe:
    Eu mesmo já atualizei a versão da ponte de 2.1.0 para 2.1.1 na chamada 
    "java.exe -cp ponte-integracao-pcronos-2.1.1.jar" no seu arquivo PCronos.bat. 
     Favor atualizar a mesma chamada em outros lugares no Datasul, se tiver. 
+ 
    
-5. Atualizar a versão da ponte no arquivo "Dados Clientes.txt" no projeto Eclipse.
+5. No arquivo .bat substituir ws-sjcc por ws_editorajc
+ 
+ 
+6. Atualizar a versão da ponte no arquivo "Dados Clientes.txt" no projeto Eclipse.
