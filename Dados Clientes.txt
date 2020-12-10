@@ -3,7 +3,7 @@ Grupo JC:
 
 - Id_comprador: 781 (na base de Producao), 657 na base de Homologação de 08.09.2020
 - Sistema: Datasul
-- Versão ponte java: 2.1.0
+- Versão ponte java: 2.1.1
 - Em produção: Não
 - Sistema operacional: WINDOWS SERVER 2012 R2 DataCenter
 - Idioma do Sistema operacional: Inglês

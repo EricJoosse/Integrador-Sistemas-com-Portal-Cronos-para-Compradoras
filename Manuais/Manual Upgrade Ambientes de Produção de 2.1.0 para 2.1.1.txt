@@ -23,6 +23,9 @@ type C:\ProgramData\PortalCronos\Status_10798130000175_243680_20200724_145856.tx
    
 REM Navegar para o diretório onde fica a ponte, e de lá executar java.exe:
 
+   (iv) Atualizar a versão da ponte de 2.1.0 para 2.1.1 na chamada 
+        "java.exe -cp ponte-integracao-pcronos-2.1.1.jar" no arquivo PCronos.bat
+
  
 3. No servidor do comprador, apagar o subdiretório antigo C:\ProgramData\PortalCronos\XML\
    e possíveis outros subdiretórios antigos como por exemplo C:\ProgramData\PortalCronos\Upload\
