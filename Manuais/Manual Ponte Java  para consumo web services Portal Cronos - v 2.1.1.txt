@@ -1,5 +1,5 @@
-Manual instalação e uso da Ponte Java para consumir web services do Portal Cronos
-=================================================================================
+Manual para instalação e uso da Ponte Java para consumo dos web services do Portal Cronos - v. 2.1.1 (11.12.2020)
+=================================================================================================================
 
 Objetivo:
 =========
@@ -116,6 +116,11 @@ Observações:
 2. Dentro do parâmetro "url" é melhor usar os caracteres "/"  e não os caracteres "\" para evitar a necessidade de usar "escape characters".
  
 3. O parâmetro "toDebugar" (true/false/-) é opcional, com default = false. Os demais parâmetros são obrigatórios. 
+   Se precisar debugar a ponte Java um dia: 
+     (i)  Alterar este parâmetro de false para true temporariamente. 
+     (ii) Descomentar as 2 linhas começando com "type" no arquivo .bat
+   Após ter debbugado a ponte, não se esqueça alterar este parâmetro de volta de true para false,
+   e re-comentar as 2 linhas.
    
 4. A ponte Java é independente do web service do Portal Cronos e pode ser usada
     para upload de qualquer arquivo XML para qualquer web service do Portal Cronos
