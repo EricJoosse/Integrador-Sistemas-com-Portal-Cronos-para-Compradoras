@@ -1,4 +1,4 @@
-Manual para instalação e uso da Ponte Java para consumo dos web services do Portal Cronos - v. 2.1.1 (11.12.2020)
+Manual para instalação e uso da Ponte Java para consumo dos web services do Portal Cronos - v. 2.1.2 (05.02.2021)
 =================================================================================================================
 
 Objetivo:
@@ -74,7 +74,11 @@ B.1.4. Caso contrário, como última opção (menos ideal), a Cronos Technology já t
 B.2. Uso da ponte com MS-DOS:
 =============================
 
-Criar um arquivo .bat com o seguinte conteúdo:
+(i) Criar o seguinte subdiretório novo, embora que a ponte Java cria este diretório automaticamente se não existir:
+      - C:/ProgramData/PortalCronos
+    pois o sistema que coonsome a ponte java deve gerar os arquivos XML antes da chamada da ponte.
+      
+(ii) Criar um arquivo .bat com o seguinte conteúdo:
  
 REM Navegar para o diretório onde fica a ponte, e de lá executar java.exe:
 cd\
@@ -130,22 +134,26 @@ Observações:
    O diretório fixo é C:/ProgramData/PortalCronos/ e não é C:/temp/ para evitar prejuizos graves e até paradas impeditivas 
    da integração no futuro. O diretório "C:/ProgramData/" é o diretório padrão Microsoft para arquivos temporários de programas. 
    
-6. A ponte mesma cria os 2 tipos de arquivos de retorno fisicamente se não existir arquivos com estes nomes.
+6. É recomendavel separar os arquivos de tipo "fonte" / "programa" (os arquivos .bat e .jar) e os arquivos de tipo dados (.xml) 
+   porque arquivos de tipo fonte são poucos e arquivos de tipo XML são muitos, 
+   e também por causa da limpeza automática dos arquivos XML após 30 dias por exemplo.
+
+7. A ponte mesma cria os 2 tipos de arquivos de retorno fisicamente se não existir arquivos com estes nomes.
    O sistema que integra com o Portal Cronos apenas deve passar os NOMES dos arquivos de retorno e após a chamada da ponte 
    fazer a leitura destes mesmos arquivos de retorno. 
  
-7. Os nomes dos arquivos de retorno devem ser diferentes em cada chamada da ponte 
+8. Os nomes dos arquivos de retorno devem ser diferentes em cada chamada da ponte 
    para impossibilitar interferência indevida de requisições diferentes.
  
-8. A ponte faz limpeza automática do subdiretório C:/ProgramData/PortalCronos/PonteJava/ que é um subdiretório 
+9. A ponte faz limpeza automática do subdiretório C:/ProgramData/PortalCronos/PonteJava/ que é um subdiretório 
    para uso interno pela ponte. A ponte guarda os arquivos internos 30 dias. 
    O diretório raiz  C:/ProgramData/PortalCronos/ é para uso pelo sistema que integra com o Portal Cronos. 
-   A ponte não faz limpeza automática deste diretório raiz. 
+   Na versão 2.1.1 a ponte não faz limpeza automática deste diretório raiz. 
    
-9. A ponte foi feita e testada para funcionar até com versões antigas de Java como Java 1.7.
-   Também tem outra versão mais moderna da ponte disponível para Java 1.8 e maior.
+10. A ponte foi feita e testada para funcionar até com versões antigas de Java como Java 1.7.
+    Também tem outra versão mais moderna da ponte disponível para Java 1.8 e maior.
  
-10. Java pode receber parâmetros de qualquer tamanho e não tem nenhum limite para a quantidade de caracteres, 
+11. Java pode receber parâmetros de qualquer tamanho e não tem nenhum limite para a quantidade de caracteres, 
     porém não seria uma boa ideia substituir o uso de arquivos no parâmetro "NomeArqRetornoXML" 
     por outro parâmetro "stringXML" passando um string XML direto para a ponte, 
     pois MS-DOS tem um limite de 2048 ou 8191 caracteres para linhas de comando DOS, dependendo da versão de Windows. 

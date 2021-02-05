@@ -27,10 +27,12 @@ Dúvidas:
  
 3. Você voltará quando da licença médica?
  
-Observação: 
-O diretório raiz C:/ProgramData/PortalCronos/ é para uso pelo sistema que integra com o Portal Cronos. 
-O subdiretório C:/ProgramData/PortalCronos/PonteJava/ é um subdiretório para uso interno pela ponte 
-que sempre já tinha limpeza automática ativada. 
+Observações: 
+(i) O subdiretório C:/ProgramData/PortalCronos/PonteJava/ é um subdiretório para uso interno pela ponte 
+     que sempre já tinha limpeza automática ativada. 
+
+(ii) O diretório raiz C:/ProgramData/PortalCronos/ é para uso pelo sistema que integra com o Portal Cronos, 
+     o Datasul no caso. Na ponte posso criar uma opção de limpeza automática deste diretório também.  
  
 Atc,
 Eric
