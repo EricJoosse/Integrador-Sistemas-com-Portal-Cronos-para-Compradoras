@@ -76,7 +76,7 @@ B.2. Uso da ponte com MS-DOS:
 
 (i) Criar o seguinte subdiretório novo, embora que a ponte Java cria este diretório automaticamente se não existir:
       - C:/ProgramData/PortalCronos
-    pois o sistema que coonsome a ponte java deve gerar os arquivos XML antes da chamada da ponte.
+    pois o sistema que consome a ponte java deve gerar o primeiro arquivo XML antes da primeira chamada da ponte.
       
 (ii) Criar um arquivo .bat com o seguinte conteúdo:
  
