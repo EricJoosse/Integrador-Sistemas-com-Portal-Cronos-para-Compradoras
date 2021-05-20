@@ -35,3 +35,7 @@ IdComprador		IdCompradorMatriz	Usuário						Senha	CNPJ			Nome Fantasia
 666				657					ws_elocomunicacao			123456	02380966000127	Elo Comunicação
 656				657					ws_editorajc				123456	10798130000175	Editora JC
 656				657					leaosjcc					123456	10798130000175	Editora JC
+
+- Homologação: 
+	- Login PJ: ws_editorajc   / 123456
+	- Login PF: usuariotestejc / 123456
