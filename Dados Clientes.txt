@@ -39,3 +39,8 @@ IdComprador		IdCompradorMatriz	Usuário						Senha	CNPJ			Nome Fantasia
 - Homologação: 
 	- Login PJ: ws_editorajc   / 123456
 	- Login PF: usuariotestejc / 123456
+
+- Grupo de Desenvolvimento/Homologação da integração - emails: 
+	De: eric@cronos-tech.com.br
+	To: carlos.etsouza@gmail.com
+	CC: luciana@cronos-tech.com.br  sdavila@sjcc.com.br  rfdantas@jc.com.br  guy@applysolutions.com.br  sobral118@gmail.com
